@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>Tutorial Google Code</title>
+	</head>
+	<body>
+		<h1>Google Code Hosting HOWTO</h1>
+
+		<h3>Cadastro</h3>
+		
+		<ol>
+			<li>Antes de mais nada, voc&ecirc; precisa ter uma conta do Google para poder criar um projeto. Crie uma acessando <a href="https://www.google.com/accounts/Login">https://www.google.com/accounts/Login</a> caso n&atilde;o tenhas.</li>
+			<li>Acesse o site <a href="http://code.google.com/hosting/">http://code.google.com/hosting/</a>. Se voc&ecirc; n&atilde;o estiver logado no Google, aparecer&aacute; um link escrito "Sign in with your Gmail account to create a project"; clique nele e fa&ccedil;a o login. Se estiver, clique em "Create a new project"</li>
+			<li>Na p&aacute;gina que abrir haver&aacute; um formul&aacute;rio com o nome do projeto, um sum&aacute;rio (descri&ccedil;&atilde;o de uma linha do projeto), uma descri&ccedil;&atilde;o que ser&aacute; o conte&uacute;do principal da home page do projeto, um campo para a escolha do tipo de licensa, e campos para definir r&oacute;tulos para o projeto. Os r&oacute;tulos ajudam a identificar qual &eacute; o tipo do projeto. Eu sugiro usar, entre outros, os seguintes r&oacute;tulos: Java, UFSC, ine5383.cco.ufsc.br. O &uacute;ltimo ajudar&aacute; a procurar os trabalhos pela internet usando "label:ine5383.cco.ufsc.br" na p&aacute;gina de pesquisa do Google Code (<a href="http://code.google.com/hosting/">http://code.google.com/hosting/</a>).</li>	
+			<li>Est&aacute; feito! A p&aacute;gina que voc&ecirc; criou est&aacute; em code.google.com/p/nome-do-projeto.</li>
+		</ol>
+
+		<h2>Se&ccedil;&otilde;es</h2>
+		
+		<p>A p&aacute;gina do projeto criado &eacute; composta por seis abas: Project Home, Downloads, Wiki, Issues, Source, e Administer.</p>
+
+		<h3>Downloads</h3>
+
+		<p>Na aba Downloads, clique em "new download". Os campos s&atilde;o auto-explanat&oacute;rios. Um detalhe a se atentar: cada arquivo deve ter um nome distinto e o conte&uacute;do n&atilde;o pode ser alterado, ent&atilde;o inclua o n&uacute;mero da vers&atilde;o em cada arquivo.
+
+		<h3>Source</h3>
+
+		<p>Google Code usa o sistema de controle de vers&otilde;es Subversion (ou abreviadamente svn). Existe um livro da editora O'Reilly sobre Subversion online em <a href="http://svnbook.red-bean.com/">http://svnbook.red-bean.com/</a>. Somente um peda&ccedil;o dele est&aacute; em portugu&ecirc;s, parece que se esqueceram de traduzir o resto :-). Por&eacute;m, existe uma se&ccedil;&atilde;o do livro que &eacute; uma introdu&ccedil;&atilde;o r&aacute;pida para o svn: <a href="http://svnbook.red-bean.com/nightly/pt_BR/svn.intro.quickstart.html">http://svnbook.red-bean.com/nightly/pt_BR/svn.intro.quickstart.html</a>.</p>
+		<p>Atrav&eacute;s do link "Subversion repository" voc&ecirc; pode navegar pela estrutura de diret&oacute;rios do c&oacute;digo-fonte. Se tiveres o cliente do svn instalado em sua m&aacute;quina, &eacute; poss&iacute;vel copiar - na terminologia do svn &eacute; fazer um "checkout" - a estrutura inteira do c&oacute;digo-fonte atrav&eacute;s do comando <kbd>svn checkout http://nome-do-projeto.googlecode.com/svn/trunk/ nome-do-projeto</kbd>. Deste modo voc&ecirc; s&oacute; poder&aacute; alterar as fontes na c&oacute;pia local. Para poder alterar e submeter as suas altera&ccedil;&otilde;es, use ent&atilde;o <kbd>svn checkout https://nome-do-projeto.googlecode.com/svn/trunk/ nome-do-projeto --username nome-usuario</kbd>.</p>
+
+		<h3>Wiki</h3>
+
+		<p>Um wiki &eacute; um website que permite aos visitantes adicionar, remover, e editar o conte&uacute;do facilmente, alguns deles mediante permiss&atilde;o. Ela &eacute; bastante &uacute;til para se documentar o projeto a medida que se programa. &Eacute; poss&iacute;vel criar uma p&aacute;gina wiki clicando em "new wiki page". Ao lado da caixa de texto h&aacute; um link que explica a marca&ccedil;&atilde;o usada no wiki.</p>
+
+		<h3>Issue</h3>
+
+		<p>A medida que o projeto evolui podem aparecer erros(bugs), descobertos tanto pelo desenvolvedor como pelo usu&aacute;rio. Esta se&ccedil;&atilde;o serve para que qualquer pessoa possa dar sua sugest&atilde;o de melhoramento ou comunicar defeitos. </p>
+
+		<h3>Administer</h3>
+
+		<p>Esta &eacute; a central de controle do projeto. Ela possui v&aacute;rias sub-se&ccedil;&otilde;es:
+		<ul>
+			<li><em>Project Metadata</em> descreve o que aparece na p&aacute;gina principal. Um campo importante &eacute; "Activity Notification", que te permite entrar com o e-mail ao qual uma mensagem ser&aacute; enviada toda vez que o reposit&oacute;rio for alterado ou algum bug for comunicado.</li>
+
+			<li><em>Project Members</em> &eacute; aonde voc&ecirc; indicar&aacute; quem s&atilde;o os administradores e desenvolvedores do projeto. Por padr&atilde;o a pessoa que criou o projeto &eacute; um administrador. &Eacute; preciso ter uma conta do Google para participar.</li>
+
+			<li><em>Downloads, Wiki e Issue Tracking</em> te permitem alterar e definir novas labels</li>
+			<li> Em <em>Advanced</em> voc&ecirc; pode deletar o projeto, e s&oacute;. Eu desaconselho :-)</li>
+		</ul>
+		</p>
+	</body>
+</html>	
