@@ -36,6 +36,7 @@ type Ambiente = (
     [Panel ()],     -- Lista de posições (painéis) do tabuleiro
     Panel (),       -- Painel que represente o fundo da janela
     Panel (),       -- Painel que representa o placar do jogo
+	Panel (),		-- Painel que representa o título do jogo
     MenuItem ()     -- Item do menu que encerra a partida
     )
 	
@@ -46,43 +47,47 @@ oposto e
     | otherwise   = Vazio
 	
 ambFrm :: Ambiente -> Frame ()
-ambFrm (a, _, _, _, _, _, _, _, _, _) = a
+ambFrm (a, _, _, _, _, _, _, _, _, _, _) = a
 
 -- Retorna somente o tabuleiro
 ambTbl :: Ambiente -> Var Tabuleiro
-ambTbl (_, a, _, _, _, _, _, _, _, _) = a
+ambTbl (_, a, _, _, _, _, _, _, _, _, _) = a
 
 -- Retorna somente o modo de jogo
 ambMod :: Ambiente -> Var Int
-ambMod (_, _, a, _, _, _, _, _, _, _) = a
+ambMod (_, _, a, _, _, _, _, _, _, _, _) = a
 
 -- Retorna somente a variável de vez
 ambVez :: Ambiente -> Var Estado
-ambVez (_, _, _, a, _, _, _, _, _, _) = a
+ambVez (_, _, _, a, _, _, _, _, _, _, _) = a
 
 -- Retorna somente a variável de aviso de jogada inválida
 ambAvs :: Ambiente -> Var Bool
-ambAvs (_, _, _, _, a, _, _, _, _, _) = a
+ambAvs (_, _, _, _, a, _, _, _, _, _, _) = a
 
 -- Retorna somente o skin
 ambSkn :: Ambiente -> Var String
-ambSkn (_, _, _, _, _, a, _, _, _, _) = a
+ambSkn (_, _, _, _, _, a, _, _, _, _, _) = a
 
 -- Retorna somente a lista de posições (painéis)
 ambPos :: Ambiente -> [Panel ()]
-ambPos (_, _, _, _, _, _, a, _, _, _) = a
+ambPos (_, _, _, _, _, _, a, _, _, _, _) = a
+
+-- Retorna somente o painel do título
+ambPn3 :: Ambiente -> Panel ()
+ambPn3 (_, _, _, _, _, _, _, a, _, _, _) = a
 
 -- Retorna somente o painel de fundo
 ambPn1 :: Ambiente -> Panel ()
-ambPn1 (_, _, _, _, _, _, _, a, _, _) = a
+ambPn1 (_, _, _, _, _, _, _, _, a, _, _) = a
 
 -- Retorna somente o painel do placar
 ambPn2 :: Ambiente -> Panel ()
-ambPn2 (_, _, _, _, _, _, _, _, a, _) = a
+ambPn2 (_, _, _, _, _, _, _, _, _, a, _) = a
 
 -- Retorna somente o item do menu que encerra a partida
 ambFch :: Ambiente -> MenuItem ()
-ambFch (_, _, _, _, _, _, _, _, _, a) = a
+ambFch (_, _, _, _, _, _, _, _, _, _, a) = a
 
 
 -- Converte Estado para String

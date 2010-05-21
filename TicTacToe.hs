@@ -17,20 +17,21 @@ gui = do
 	f 			<- frameFixed [text := tituloJanela]
 	
 	-- Cria os paineis da janela
-	p1 			<- panel f [clientSize := sz 250 250]
-	p2			<- panel f [clientSize := sz 250 48]
+	p3			<- panel f [clientSize := sz 384 38]
+	p1 			<- panel f [clientSize := sz 384 384]
+	p2			<- panel f [clientSize := sz 384 38]
 	
-	p_1_1		<- panel p1 [clientSize := sz 48 48]
-	p_1_2		<- panel p1 [clientSize := sz 48 48]
-	p_1_3		<- panel p1 [clientSize := sz 48 48]
+	p_1_1		<- panel p1 [clientSize := sz 128 128]
+	p_1_2		<- panel p1 [clientSize := sz 128 128]
+	p_1_3		<- panel p1 [clientSize := sz 128 128]
 	
-	p_2_1		<- panel p1 [clientSize := sz 48 48]
-	p_2_2		<- panel p1 [clientSize := sz 48 48]
-	p_2_3		<- panel p1 [clientSize := sz 48 48]
+	p_2_1		<- panel p1 [clientSize := sz 128 128]
+	p_2_2		<- panel p1 [clientSize := sz 128 128]
+	p_2_3		<- panel p1 [clientSize := sz 128 128]
 	
-	p_3_1		<- panel p1 [clientSize := sz 48 48]
-	p_3_2		<- panel p1 [clientSize := sz 48 48]
-	p_3_3		<- panel p1 [clientSize := sz 48 48]
+	p_3_1		<- panel p1 [clientSize := sz 128 128]
+	p_3_2		<- panel p1 [clientSize := sz 128 128]
+	p_3_3		<- panel p1 [clientSize := sz 128 128]
 	
 	mJogo		<- menuPane [text := menuJogo]
 	mNovo1		<- menuItem mJogo [text := menuNovoJogoCPU, help := ajudaNovoJogoCPU]
@@ -55,18 +56,18 @@ gui = do
 						p_2_1,p_2_2,p_2_3,
 						p_3_1,p_3_2,p_3_3]
 						
-	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p1, p2, mFecha)
+	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p3, p1, p2, mFecha)
 	
 	set f [statusBar := [status],
 		menuBar := [mJogo],
-		layout := column 0 [row 0 [widget p1], row 1 [widget p2]],
-		clientSize := sz 250 250]
+		layout := column 0 [row 0 [widget p3], row 1 [widget p1], row 2 [widget p2]],
+		clientSize := sz 384 460]
 
 	set p1 [layout := floatCentre $ column 0 [
 			row 1 [row 0 [widget p_1_1, widget p_1_2, widget p_1_3]],
 			row 2 [row 0 [widget p_2_1, widget p_2_2, widget p_2_3]],
 			row 3 [row 0 [widget p_3_1, widget p_3_2, widget p_3_3]]],
-			clientSize := sz 250 250]
+			clientSize := sz 384 384]
 			
-	aplicaSkin amb "padrao"
+	aplicaSkin amb "LaVermelha"
 	

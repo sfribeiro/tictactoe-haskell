@@ -29,15 +29,38 @@ atualizaPosicao a p e = do
                     bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/vazio.bmp")
                     drawBitmap dc bmp (pt 0 0) False []
 
-atualizaFundo :: Ambiente -> IO ()
-atualizaFundo a = do
-    set (ambPn1 a) [on paint := aux a]
-    repaint (ambPn1 a)
-    where
-        aux a dc _ = do
-            s <- get (ambSkn a) value
-            bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/fundo.bmp")
-            drawBitmap dc bmp (pt 0 0) False []					
+atualizaTitulo :: Ambiente -> IO ()
+atualizaTitulo a = do
+	set (ambPn1 a) [on paint := aux a]
+	repaint (ambPn1 a)
+	where
+		aux a dc _ = do
+			s <- get (ambSkn a) value
+			bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/titulo.bmp")
+			drawBitmap dc bmp (pt 0 0) False []			
+
+--Atualiza a vez do jogador.
+atualizaVez :: Ambiente -> IO ()
+atualizaVez a = do
+		v <- get (ambVez a) value
+		t <- get (ambTbl a) value
+		s <- get (ambSkn a) value
+		set (ambPn2 a) [on paint := aux2 s (aux1 v)]
+		repaint (ambPn2 a)
+		where
+			aux1 v
+				| v == X  = "vezx"
+				| v == O = "vezo"
+				| otherwise   = ""
+			aux2 s v dc viewArea = do
+				bmp_fundo <- bitmapCreateFromFile ("skins/" ++ s ++ "/veznada.bmp")
+				drawBitmap dc bmp_fundo (pt 0 0) False []
+				if (v /= "")
+					then do
+						bmp <- (bitmapCreateFromFile ("skins/" ++ s ++ "/" ++ v ++ ".bmp"))
+						drawBitmap dc bmp (pt 0 0) True []
+					else do
+						return ()
 					
 atualiza :: Ambiente -> Tabuleiro -> [Panel ()] -> IO ()
 atualiza _ [] [] = do {return ()}
@@ -50,5 +73,5 @@ aplicaSkin a s = do
     set (ambSkn a) [value := s]
     t1 <- get (ambTbl a) value
     atualiza a t1 (ambPos a)
-    atualizaFundo a
-    --atualizaPlacar a
+    atualizaTitulo a
+    atualizaVez a
