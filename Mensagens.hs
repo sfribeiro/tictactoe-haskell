@@ -7,7 +7,7 @@ menuJogo :: String
 menuJogo = "Jogo"
 
 menuNovoJogoCPU :: String
-menuNovoJogoCPU = "Novo jogo - contra CPU"
+menuNovoJogoCPU = "&Novo jogo - contra CPU"
 ajudaNovoJogoCPU :: String
 ajudaNovoJogoCPU = "Inicia um novo jogo contra a CPU"
 
