@@ -95,8 +95,32 @@ strO = "O"
 strVazio :: String
 strVazio = "VAZIO"
 
+dlgInvalidaT :: String
+dlgInvalidaT = "Jogada Invalida!"
+
+dlgInvalida :: String
+dlgInvalida = "Voce deve jogar em outro lugar!"
+
 dlgNovoJogoT :: String
 dlgNovoJogoT = "Novo Jogo?"
 
 dlgNovoJogo :: String
 dlgNovoJogo = "Deseja iniciar um novo jogo?"
+
+dlgFecharT :: String
+dlgFecharT = "Encerrar Partida?"
+
+dlgFechar :: String
+dlgFechar = "Deseja encerrar a partida atual?"
+
+dlgConcluidoT :: String
+dlgConcluidoT = "Jogo Concluido!"
+
+dlgVX:: String
+dlgVX = "X VENCEU!"
+
+dlgVO :: String
+dlgVO = "O VENCEU!"
+
+dlgVEmpate :: String
+dlgVEmpate = "JOGO EMPATADO!"
