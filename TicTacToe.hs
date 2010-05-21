@@ -37,7 +37,7 @@ gui = do
 	mNovo2		<- menuItem mJogo [text := menuNovoJogo2P, help := ajudaNovoJogo2P]
 	mFecha		<- menuItem mJogo [text := menuFecha, help := ajudaFecha]
 	mJogoL		<- menuLine mJogo --separador
-	mSair 		<- menuQuit mJogo [text := menuSair, help := ajudaSair]
+	mSair 		<- menuQuit mJogo [text := menuSair, help := ajudaSair, on command:= close f]
 	
 	status		<- statusField [text := ""]
 	
