@@ -17,6 +17,7 @@ gui = do
 	f 			<- frameFixed [text := tituloJanela]
 	
 	-- Cria os paineis da janela
+	
 	p3			<- panel f [clientSize := sz 384 38]
 	p1 			<- panel f [clientSize := sz 384 384]
 	p2			<- panel f [clientSize := sz 384 38]

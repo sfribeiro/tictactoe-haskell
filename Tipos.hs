@@ -12,8 +12,8 @@ module Tipos (
     ambMod, ambVez,
     ambAvs, ambSkn,
     ambPos, ambPn1,
-    ambPn2, ambFch,
-    strEstado,
+    ambPn2, ambPn3,
+	ambFch, strEstado,
     toIO
     ) where
 	

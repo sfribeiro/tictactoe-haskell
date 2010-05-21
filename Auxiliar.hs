@@ -31,8 +31,8 @@ atualizaPosicao a p e = do
 
 atualizaTitulo :: Ambiente -> IO ()
 atualizaTitulo a = do
-	set (ambPn1 a) [on paint := aux a]
-	repaint (ambPn1 a)
+	set (ambPn3 a) [on paint := aux a]
+	repaint (ambPn3 a)
 	where
 		aux a dc _ = do
 			s <- get (ambSkn a) value
