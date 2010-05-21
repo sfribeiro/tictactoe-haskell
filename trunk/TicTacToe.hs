@@ -70,5 +70,5 @@ gui = do
 			row 3 [row 0 [widget p_3_1, widget p_3_2, widget p_3_3]]],
 			clientSize := sz 384 384]
 			
-	aplicaSkin amb "LaVermelha"
+	aplicaSkin amb "padrao"
 	
