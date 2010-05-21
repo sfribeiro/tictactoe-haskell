@@ -38,8 +38,14 @@ gui = do
 	
 	--Jogo
 	mJogo		<- menuPane [text := menuJogo]
-	mNovo1		<- menuItem mJogo [text := menuNovoJogoCPU, help := ajudaNovoJogoCPU]
-	mNovo2		<- menuItem mJogo [text := menuNovoJogo2P, help := ajudaNovoJogo2P]
+	mNovo1		<- menuPane [text := menuNovoJogoCPU]
+	mNovo1Sub	<- menuSub mJogo mNovo1[]
+	mNovo11		<- menuItem mNovo1 [text := "X", help := ajudaNovoJogoCPU]
+	mNovo12		<- menuItem mNovo1 [text := "O", help := ajudaNovoJogoCPU]
+	mNovo2		<- menuPane [text := menuNovoJogo2P]
+	mNovo2Sub	<- menuSub mJogo mNovo2 []
+	mNovo21		<- menuItem mNovo2 [text := "X", help := ajudaNovoJogo2P]
+	mNovo22		<- menuItem mNovo2 [text := "O", help := ajudaNovoJogo2P]
 	mFecha		<- menuItem mJogo [text := menuFecha, help := ajudaFecha]
 	mJogoL		<- menuLine mJogo --separador
 	mSair 		<- menuQuit mJogo [text := menuSair, help := ajudaSair]
@@ -80,6 +86,10 @@ gui = do
 	
 	--Jogo
 	set mSair [on command := close f]
+	set mNovo11 [on command := novoJogoP amb 1 X, checkable := True]
+	set mNovo12 [on command := novoJogoP amb 1 O, checkable := True]
+	set mNovo21 [on command := novoJogoP amb 2 X, checkable := True]
+	set mNovo22 [on command := novoJogoP amb 2 O, checkable := True]
 	
 	--Opções
 	set mSkin1 [on command := aplicaSkin amb "padrao", checked := True]
