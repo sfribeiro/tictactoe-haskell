@@ -170,7 +170,7 @@ aplicaSkin a s = do
 changeMonth :: String -> String
 changeMonth "January" = "Janeiro"
 changeMonth "February" = "Fevereiro"
-changeMonth "Match" = "Marco" -- sem acento para não ter problema
+changeMonth "Match" = "Mar\231o"
 changeMonth "April" = "Abril"
 changeMonth "May" = "Maio"
 changeMonth "June" = "Junho"
@@ -211,7 +211,7 @@ jogar a (x,y) est _ = do
 					let strTime = (show (ctDay time) ++ "/" ++  changeMonth (show (ctMonth time)) ++ "/" ++ show (ctYear time) ++ " - " ++ show (ctHour time) ++ ":" ++ show (ctMin time) ++ ":" ++ show (ctSec time))
 					case ganhador of
 						X -> do
-							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador O venceu.\n")
+							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador X venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do

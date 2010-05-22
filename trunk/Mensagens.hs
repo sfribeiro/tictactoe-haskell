@@ -27,18 +27,18 @@ ajudaSair :: String
 ajudaSair = "Sai do Jogo da Velha"
 
 menuOpcoes :: String
-menuOpcoes = "&Opcoes"
+menuOpcoes = "&Op\231\245es"
 
 menuAvisar :: String
-menuAvisar = "Avisar jogada invalida"
+menuAvisar = "Avisar jogada inv\225lida"
 ajudaAvisar :: String
-ajudaAvisar = "Exibicao de uma mensagem quando a jogada for invalida"
+ajudaAvisar = "Exibi\231\227o de uma mensagem quando a jogada for inv\225lida"
 
 menuSkins :: String
 menuSkins = "Selecionar skin"
 
 menuSkin1 :: String
-menuSkin1 = "1. Padrao"
+menuSkin1 = "1. Padr\227o"
 
 menuSkin2 :: String
 menuSkin2 = "2. La Vermelha"
@@ -67,12 +67,12 @@ msgRegras :: String
 msgRegras =
     "REGRAS DO JOGO\n" ++
     "------------------------------------------------------------\n\n" ++
-    "O tabuleiro  e uma matriz  de tres linhas por tres colunas.\n" ++
-    "Dois jogadores escolhem uma marcacao cada um, geralmente um circulo (O) e um xis (X).\n" ++
-    "Os jogadores jogam alternadamente, uma marcacao por vez, numa lacuna que esteja vazia.\n" ++
-    "O objetivo e conseguir tres circulos ou tres xis em linha, quer horizontal, vertical ou diagonal,"++ 
-	"e ao mesmo tempo, quando possivel, impedir o adversario de ganhar na proxima jogada.\n" ++
-    "Quando um jogador conquista o objetivo, costuma-se riscar os tres simbolos."
+    "O tabuleiro \233 uma matriz  de tr\234s linhas por tr\234s colunas.\n" ++
+    "Dois jogadores escolhem uma marca\231\227o cada um, geralmente um c\237rculo (O) e um xis (X).\n" ++
+    "Os jogadores jogam alternadamente, uma marca\231\227o por vez, numa lacuna que esteja vazia.\n" ++
+    "O objetivo \233 conseguir tr\234s c\237rculos ou tr\234s xis em linha, quer horizontal, vertical ou diagonal,"++ 
+	"e ao mesmo tempo, quando poss\237vel, impedir o advers\225rio de ganhar na proxima jogada.\n" ++
+    "Quando um jogador conquista o objetivo, costuma-se riscar os tr\234s s\237mbolos."
 
 
 
@@ -99,10 +99,10 @@ strVazio :: String
 strVazio = "vazio"
 
 dlgInvalidaT :: String
-dlgInvalidaT = "Jogada Invalida!"
+dlgInvalidaT = "Jogada Inv\225lida!"
 
 dlgInvalida :: String
-dlgInvalida = "Voce deve jogar em outro lugar!"
+dlgInvalida = "Voc\234 deve jogar em outro lugar!"
 
 dlgNovoJogoT :: String
 dlgNovoJogoT = "Novo Jogo?"
@@ -117,7 +117,7 @@ dlgFechar :: String
 dlgFechar = "Deseja encerrar a partida atual?"
 
 dlgConcluidoT :: String
-dlgConcluidoT = "Jogo Concluido!"
+dlgConcluidoT = "Jogo Conclu\237do!"
 
 dlgVX:: String
 dlgVX = "X VENCEU!"
