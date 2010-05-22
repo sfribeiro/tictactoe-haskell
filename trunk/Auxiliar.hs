@@ -165,6 +165,25 @@ aplicaSkin a s = do
 
 --convertDateToString2 :: (Integer, Int, Int, Int, Int, Int) -> String
 --convertDateToString2 (ano, mes, dia, hora, min, seg) = (dia ++ "/" ++ mes ++ "/" ++ ano ++ " - " ++ hora ++ ":" ++ min ++ ":" ++ seg)
+
+
+changeMonth :: String -> String
+changeMonth "January" = "Janeiro"
+changeMonth "February" = "Fevereiro"
+changeMonth "Match" = "Marco" -- sem acento para não ter problema
+changeMonth "April" = "Abril"
+changeMonth "May" = "Maio"
+changeMonth "June" = "Junho"
+changeMonth "July" = "Julho"
+changeMonth "August" = "Agosto"
+changeMonth "September" = "Setembro"
+changeMonth "October" = "Outubro"
+changeMonth "November" = "Novembro"
+changeMonth "December" = "Dezembro"
+changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois.
+
+
+
 	
 jogar :: Ambiente -> (Int,Int) -> Estado -> Point -> IO()
 jogar a (x,y) est _ = do
@@ -189,7 +208,7 @@ jogar a (x,y) est _ = do
 					ganhador <- toIO (fst (vencedor t1))
 					time2 <- gettime
 					time <- toCalendarTime time2
-					let strTime = (show (ctDay time) ++ "/" ++ show (ctMonth time) ++ "/" ++ show (ctDay time) ++ " - " ++ show (ctHour time) ++ ":" ++ show (ctMin time) ++ ":" ++ show (ctSec time))
+					let strTime = (show (ctDay time) ++ "/" ++  changeMonth (show (ctMonth time)) ++ "/" ++ show (ctDay time) ++ " - " ++ show (ctHour time) ++ ":" ++ show (ctMin time) ++ ":" ++ show (ctSec time))
 					case ganhador of
 						X -> do
 							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador O venceu.\n")
