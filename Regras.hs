@@ -42,24 +42,24 @@ verificaVazio ((_,_,a):as)
 	|a == Vazio = 1 + verificaVazio as
 	|otherwise = verificaVazio as
 	
-vencedor :: Tabuleiro -> Estado
+vencedor :: Tabuleiro -> (Estado, Int)
 vencedor [(_,_,a),(_,_,b),(_,_,c),
 		(_,_,d),(_,_,e),(_,_,f),
 		(_,_,g),(_,_,h),(_,_,i)]
-		|(a == b) && (b == c) && (a /= Vazio) = a
-		|(d == e) && (e == f) && (d /= Vazio) = d
-		|(g == h) && (h == i) && (g	/= Vazio) = g
-		|(a == d) && (d == g) && (a /= Vazio) = a
-		|(b == e) && (e == h) && (b /= Vazio) = b
-		|(c == f) && (f == i) && (c /= Vazio) = c
-		|(a == e) && (e == i) && (a /= Vazio) = a
-		|(c == e) && (e == g) && (c /= Vazio) = c
-		|otherwise = Vazio
+		|(a == b) && (b == c) && (a /= Vazio) = (a,1)
+		|(d == e) && (e == f) && (d /= Vazio) = (d,2)
+		|(g == h) && (h == i) && (g	/= Vazio) = (g,3)
+		|(a == d) && (d == g) && (a /= Vazio) = (a,4)
+		|(b == e) && (e == h) && (b /= Vazio) = (b,5)
+		|(c == f) && (f == i) && (c /= Vazio) = (c,6)
+		|(a == e) && (e == i) && (a /= Vazio) = (a,7)
+		|(c == e) && (e == g) && (c /= Vazio) = (c,8)
+		|otherwise = (Vazio,0)
 	
 jogoConcluido :: Tabuleiro -> Bool
 jogoConcluido t
 	|verificaVazio t >= 5 = False
 	|verificaVazio t == 0 = True
-	|vencedor t == Vazio = False
+	|fst (vencedor t) == Vazio = False
 	|otherwise = True
 			

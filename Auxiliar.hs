@@ -10,6 +10,7 @@ import Graphics.UI.WXCore
 import Tipos
 import Regras
 import Mensagens
+import Time
 
 atualizaPosicao :: Ambiente -> Panel () -> Estado -> IO ()
 atualizaPosicao a p e = do
@@ -61,8 +62,96 @@ atualiza :: Ambiente -> Tabuleiro -> [Panel ()] -> IO ()
 atualiza _ [] [] = do {return ()}
 atualiza a ((x, y, e):ts) (p:ps) = do
     atualizaPosicao a p e
-    atualiza a ts ps					
+    atualiza a ts ps		
 
+atualizaWin :: Ambiente -> Panel () -> Estado -> IO ()
+atualizaWin a p e = do
+    set p [on paint := aux a e]
+    repaint p
+    where
+        aux a e dc _ = do
+            s <- get (ambSkn a) value
+            case e of
+                X -> do
+                    bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/winx.gif")
+                    drawBitmap dc bmp (pt 0 0) False []
+                O -> do
+                    bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/wino.gif")
+                    drawBitmap dc bmp (pt 0 0) False []
+                Vazio -> do
+                    bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/vazio.bmp")
+                    drawBitmap dc bmp (pt 0 0) False []
+					
+atualizaTab :: Ambiente -> Tabuleiro -> [Panel()] -> Int -> IO()
+atualizaTab _ [] [] _ = do {return ()}
+atualizaTab a ((x,y,e):ts) (p:ps) v = do
+	if (v == 1)
+		then do
+			if ((x == 1 && y == 1) || (x == 1 && y == 2) || (x == 1 && y == 3))
+				then do
+					atualizaWin a p e
+				else do
+					return ()
+		else do
+			if (v == 2)
+				then do
+					if ((x == 2 && y == 1) || (x == 2 && y == 2) || (x == 2 && y == 3))
+						then do
+							atualizaWin a p e
+						else do
+							return ()
+				else do
+					if (v == 3)
+						then do
+							if ((x == 3 && y == 1) || (x == 3 && y == 2) || (x == 3 && y == 3))
+								then do
+									atualizaWin a p e
+								else do
+									return ()
+						else do
+							if (v == 4)
+								then do
+									if ((x == 1 && y == 1) || (x == 2 && y == 1) || (x == 3 && y == 1))
+										then do
+											atualizaWin a p e
+										else do
+											return ()
+								else do
+									if (v == 5)
+										then do
+											if ((x == 1 && y == 2) || (x == 2 && y == 2) || (x == 3 && y == 2))
+												then do
+													atualizaWin a p e
+												else do
+													return ()
+										else do
+											if (v == 6)
+												then do
+													if ((x == 1 && y == 3) || (x == 2 && y == 3) || (x == 3 && y == 3))
+														then do
+															atualizaWin a p e
+														else do
+															return ()
+												else do
+													if (v == 7)
+														then do
+															if ((x == 1 && y == 1) || (x == 2 && y == 2) || (x == 3 && y == 3))
+																then do
+																	atualizaWin a p e
+																else do
+																	return ()
+														else do
+															if (v == 8)
+																then do
+																	if ((x == 1 && y == 3) || (x == 2 && y == 2) || (x == 3 && y == 1))
+																		then do
+																			atualizaWin a p e
+																		else do
+																			return ()
+																else do
+																	atualizaPosicao a p e														
+	atualizaTab a ts ps v																
+					
 aplicaSkin :: Ambiente -> String -> IO ()
 aplicaSkin a s = do
     set (ambSkn a) [value := s]
@@ -91,11 +180,13 @@ jogar a (x,y) est _ = do
 			atualizaVez a
 			if (jogoConcluido t1)
 				then do
-					ganhador <- toIO (vencedor t1)
+					ganhador <- toIO (fst (vencedor t1))
 					case ganhador of
 						X -> do
+							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
+							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVO
 						Vazio -> do
 							infoDialog (ambFrm a) dlgConcluidoT dlgVEmpate
