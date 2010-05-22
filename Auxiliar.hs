@@ -200,7 +200,7 @@ jogar a (x,y) est _ = do
 					ganhador <- toIO (fst (vencedor t1))
 					time2 <- gettime
 					time <- toCalendarTime time2
-					let strTime = (show (ctDay time) ++ "/" ++  changeMonth (show (ctMonth time)) ++ "/" ++ show (ctYear time) ++ " - " ++ show (ctHour time) ++ ":" ++ show (ctMin time) ++ ":" ++ show (ctSec time))
+					let strTime = (show (ctDay time) ++ "/" ++  changeMonth (show (ctMonth time)) ++ "/" ++ show (ctYear time) ++ " - " ++ strHour (ctHour time) ++ ":" ++ strHour (ctMin time) ++ ":" ++ strHour (ctSec time))
 					case ganhador of
 						X -> do
 							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador X venceu.\n")
@@ -302,7 +302,14 @@ mudaAviso a m = do
             set a [value := True]
             set m [checked := True]
 			
+-- Funções do Tempo
 
 -- Pega a hora local			
 gettime :: IO ClockTime
 gettime = getClockTime
+
+-- Transforma a hora, minuto, segundo em string
+strHour :: Int -> String
+strHour x
+	| x > 9 = show (x)
+	| otherwise = "0" ++ show (x)
