@@ -4,7 +4,7 @@ tituloJanela :: String
 tituloJanela = "Jogo da Velha"
 
 menuJogo :: String
-menuJogo = "Jogo"
+menuJogo = "&Jogo"
 
 menuNovoJogoCPU :: String
 menuNovoJogoCPU = "&Novo jogo - contra CPU"
