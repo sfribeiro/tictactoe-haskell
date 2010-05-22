@@ -169,4 +169,4 @@ changeMonth "September" = "Setembro"
 changeMonth "October" = "Outubro"
 changeMonth "November" = "Novembro"
 changeMonth "December" = "Dezembro"
-changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois.
+changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois. -Digo é um putão mesmo.

@@ -12,6 +12,7 @@ import Tipos
 import Regras
 import Mensagens
 import Time
+import Sounds
 
 -- Funções para atualização do tabuleiro
 
@@ -169,17 +170,12 @@ aplicaSkin a s = do
     atualizaTitulo a
     atualizaVez a
 	
---convertDateToString :: DateTime -> String
---convertDateToSrting dt = convertDateToString2 (toGregorian dt)
-
---convertDateToString2 :: (Integer, Int, Int, Int, Int, Int) -> String
---convertDateToString2 (ano, mes, dia, hora, min, seg) = (dia ++ "/" ++ mes ++ "/" ++ ano ++ " - " ++ hora ++ ":" ++ min ++ ":" ++ seg)
-
 --Funções para efetivar jogadas
 
 -- Realiza ou rejeita uma jogada feita
 jogar :: Ambiente -> (Int,Int) -> Estado -> Point -> IO()
 jogar a (x,y) est _ = do
+	somJogada (ambSom a)
 	t0 <- get (ambTbl a) value
 	e <- get (ambVez a) value
 	m <- get (ambMod a) value
@@ -204,10 +200,12 @@ jogar a (x,y) est _ = do
 					let strTime = (show (ctDay time) ++ "/" ++  changeMonth (show (ctMonth time)) ++ "/" ++ show (ctYear time) ++ " - " ++ strHour (ctHour time) ++ ":" ++ strHour (ctMin time) ++ ":" ++ strHour (ctSec time))
 					case ganhador of
 						X -> do
+							somVitoria (ambSom a)
 							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador X venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
+							somVitoria (ambSom a)
 							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador O venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVO
@@ -251,6 +249,7 @@ desativaJogo (p:ps) = do
 -- Inicia um novo jogo		
 novoJogo :: Ambiente -> Int -> Estado -> IO()
 novoJogo a m e = do
+	somInicio (ambSom a)
 	t0 <- get (ambTbl a) value
 	ativaJogo a t0 (ambPos a) e
 	atualiza a tabZerado (ambPos a)
