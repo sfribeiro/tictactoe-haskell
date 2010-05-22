@@ -7,14 +7,14 @@ module Sounds (
 import Graphics.UI.WX
 
 --Reproduz o som de jogada.
-somJogada :: Var Bool -> IO ()
-somJogada s = do
+somJogada :: Var Bool -> String ->IO ()
+somJogada s estado = do
 		x <- get s value
 		if (x)
 			then do
-				play(sound "sounds/somJogada.wav")
+				play(sound "sounds/somJogada" ++ estado ++ ".wav")
 			else do
-				play(sound "")
+				return ()
 		
 --Reproduz o som de vitória.
 somVitoria :: Var Bool -> IO ()
@@ -24,7 +24,7 @@ somVitoria s = do
 			then do
 				play(sound "sounds/somVitoria.wav")
 			else do
-				play(sound "")
+				return ()
 
 --Reproduz o som de Início.
 somInicio :: Var Bool -> IO ()
@@ -34,4 +34,4 @@ somInicio s = do
 			then do
 				play(sound "sounds/somInicio.wav")
 			else do
-				play(sound "")
+				return ()

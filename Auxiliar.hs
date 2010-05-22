@@ -175,7 +175,7 @@ aplicaSkin a s = do
 -- Realiza ou rejeita uma jogada feita
 jogar :: Ambiente -> (Int,Int) -> Estado -> Point -> IO()
 jogar a (x,y) est _ = do
-	somJogada (ambSom a)
+	somJogada (ambSom a) strEstado
 	t0 <- get (ambTbl a) value
 	e <- get (ambVez a) value
 	m <- get (ambMod a) value
