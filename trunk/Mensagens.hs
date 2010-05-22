@@ -1,7 +1,7 @@
 module Mensagens where
 
 tituloJanela :: String
-tituloJanela = "Jogo da Velha"
+tituloJanela = "hs#"
 
 menuJogo :: String
 menuJogo = "&Jogo"
@@ -24,7 +24,7 @@ ajudaFecha = "Encerra a partida atual"
 menuSair :: String
 menuSair = "Sair"
 ajudaSair :: String
-ajudaSair = "Sai do Jogo da Velha"
+ajudaSair = "Sai do hs#"
 
 menuOpcoes :: String
 menuOpcoes = "&Op\231\245es"
@@ -41,7 +41,7 @@ menuSkin1 :: String
 menuSkin1 = "1. Padr\227o"
 
 menuSkin2 :: String
-menuSkin2 = "2. La Vermelha"
+menuSkin2 = "2. L\227 Vermelha"
 
 menuSkin3 :: String
 menuSkin3 = "3. PacMan"
@@ -57,7 +57,7 @@ ajudaRegras = "Mostra as regras do jogo"
 menuSobre :: String
 menuSobre = "Sobre..."
 ajudaSobre :: String
-ajudaSobre = "Sobre o Jogo da Velha"
+ajudaSobre = "Sobre o hs#"
 
 -- Regras do Jogo
 msgRegrasTitulo :: String
@@ -70,24 +70,29 @@ msgRegras =
     "O tabuleiro \233 uma matriz  de tr\234s linhas por tr\234s colunas.\n" ++
     "Dois jogadores escolhem uma marca\231\227o cada um, geralmente um c\237rculo (O) e um xis (X).\n" ++
     "Os jogadores jogam alternadamente, uma marca\231\227o por vez, numa lacuna que esteja vazia.\n" ++
-    "O objetivo \233 conseguir tr\234s c\237rculos ou tr\234s xis em linha, quer horizontal, vertical ou diagonal,"++ 
-	"e ao mesmo tempo, quando poss\237vel, impedir o advers\225rio de ganhar na proxima jogada.\n" ++
+    "O objetivo \233 conseguir tr\234s c\237rculos ou tr\234s xis em linha, seja horizontal, vertical ou diagonal,"++ 
+	"e ao mesmo tempo, quando poss\237vel, impedir o advers\225rio de ganhar na pr\243xima jogada.\n" ++
     "Quando um jogador conquista o objetivo, costuma-se riscar os tr\234s s\237mbolos."
 
 
 
 msgSobreTitulo :: String
-msgSobreTitulo = "Sobre o Jogo da Velha"
+msgSobreTitulo = "Sobre o hs#"
 
 msgSobre :: String
 msgSobre =
-    "Jogo da Velha 1.0\n" ++
+    "hs# 1.0\n" ++
     "------------------------------------------------------------\n\n" ++
-    "Linguagem utilizada: Haskell\n\n" ++ 
+	"Universidade de Pernambuco\n" ++
+	"POLI - EComp\n" ++
+	"Projeto da disciplina Linguagem de Programa\231\227o Funcional\n\n" ++
+	"---------------------------\n\n" ++
+	"Computa\231\227o 08.2\n\n" ++
     "Equipe:\n" ++
     "- Anderson de Oliveira Marques\n" ++
     "- Rodrigo Cesar Lira da Silva\n" ++
-    "- Sergio Ferreira Ribeiro"
+    "- Sergio Ferreira Ribeiro\n\n" ++
+	"Linguagem utilizada: Haskell" 
 
 strX:: String
 strX = "vezx"
