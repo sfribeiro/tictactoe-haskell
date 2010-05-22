@@ -2,7 +2,7 @@ module Auxiliar (
     aplicaSkin,
     novoJogoP,
     fecharJogoP,
-    --mudaAviso
+    mudaAviso
     ) where
 	
 import Graphics.UI.WX
@@ -45,22 +45,17 @@ atualizaVez a = do
 		v <- get (ambVez a) value
 		t <- get (ambTbl a) value
 		s <- get (ambSkn a) value
-		set (ambPn2 a) [on paint := aux2 s (aux1 v)]
+		set (ambPn2 a) [on paint := aux1 s v]
 		repaint (ambPn2 a)
 		where
-			aux1 v
-				| v == X  = "vezx"
-				| v == O = "vezo"
-				| otherwise   = ""
-			aux2 s v dc viewArea = do
-				bmp_fundo <- bitmapCreateFromFile ("skins/" ++ s ++ "/veznada.bmp")
-				drawBitmap dc bmp_fundo (pt 0 0) False []
-				if (v /= "")
+			aux1 s v dc viewArea = do
+				if (strEstado v /= "vazio")
 					then do
-						bmp <- (bitmapCreateFromFile ("skins/" ++ s ++ "/" ++ v ++ ".bmp"))
+						bmp <- (bitmapCreateFromFile ("skins/" ++ s ++ "/" ++ strEstado v ++ ".bmp"))
 						drawBitmap dc bmp (pt 0 0) True []
 					else do
-						return ()
+						bmp_fundo <- bitmapCreateFromFile ("skins/" ++ s ++ "/veznada.bmp")
+						drawBitmap dc bmp_fundo (pt 0 0) False []
 					
 atualiza :: Ambiente -> Tabuleiro -> [Panel ()] -> IO ()
 atualiza _ [] [] = do {return ()}
@@ -93,7 +88,7 @@ jogar a (x,y) est _ = do
 			set (ambTbl a) [value := executaJogada t0 (x, y, e)]
 			t1 <- get (ambTbl a) value
 			atualiza a t1 (ambPos a)
-			--atualizaPlacar a 
+			atualizaVez a
 			if (jogoConcluido t1)
 				then do
 					ganhador <- toIO (vencedor t1)
@@ -112,7 +107,7 @@ jogar a (x,y) est _ = do
 							fecharJogo a
 				else do
 					set (ambVez a) [value := oposto e]
-					--atualizaPlacar a
+					atualizaVez a
 					if(oposto e == oposto est && m == 1)
 						then do
 							--jogarCPU a
@@ -135,7 +130,7 @@ novoJogo a m e = do
 	set (ambMod a) [value := m]
 	set (ambTbl a) [value := tabZerado]
 	set (ambVez a) [value := e]
-	--atualizaPlacar a
+	atualizaVez a
 	
 novoJogoP :: Ambiente -> Int -> Estado -> IO()
 novoJogoP a m e = do
@@ -162,7 +157,7 @@ fecharJogo a = do
     set (ambMod a) [value := 0]
     set (ambTbl a) [value := tabZerado]
     set (ambVez a) [value := Vazio]
-    --atualizaPlacar a
+    atualizaVez a
 	
 fecharJogoP :: Ambiente -> IO ()
 fecharJogoP a = do
@@ -172,4 +167,15 @@ fecharJogoP a = do
             fecharJogo a
         else do
             return ()
+			
+mudaAviso :: Var Bool -> MenuItem () -> IO ()
+mudaAviso a m = do
+    av <- get a value
+    if (av)
+        then do
+            set a [value := False]
+            set m [checked := False]
+        else do
+            set a [value := True]
+            set m [checked := True]
 		
