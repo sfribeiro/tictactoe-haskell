@@ -58,7 +58,8 @@ gui = do
 	mSkinsSub	<- menuSub mOpcoes mSkins []
 	mSkin1		<- menuRadioItem mSkins [text := menuSkin1]
 	mSkin2		<- menuRadioItem mSkins [text := menuSkin2]
-	
+	mSkin3      <- menuRadioItem mSkins [text := menuSkin3]
+
 	--Ajuda
 	mAjuda		<- menuHelp [text := menuAjuda]
 	mRegras		<- menuItem mAjuda [text := menuRegras, help := ajudaRegras]
@@ -96,7 +97,7 @@ gui = do
 	set mAvisar [on command := mudaAviso aviso mAvisar, checkable := True, checked := True]
 	set mSkin1 [on command := aplicaSkin amb "padrao", checked := True]
 	set mSkin2 [on command := aplicaSkin amb "LaVermelha"]
-	
+	set mSkin3 [on command := aplicaSkin amb "pacman"]
 	--Ajuda
 	set mRegras [on command := infoDialog f msgRegrasTitulo msgRegras]
 	set mSobre [on command := infoDialog f msgSobreTitulo msgSobre]
