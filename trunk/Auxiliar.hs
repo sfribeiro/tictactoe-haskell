@@ -208,7 +208,7 @@ jogar a (x,y) est _ = do
 					ganhador <- toIO (fst (vencedor t1))
 					time2 <- gettime
 					time <- toCalendarTime time2
-					let strTime = (show (ctDay time) ++ "/" ++  changeMonth (show (ctMonth time)) ++ "/" ++ show (ctDay time) ++ " - " ++ show (ctHour time) ++ ":" ++ show (ctMin time) ++ ":" ++ show (ctSec time))
+					let strTime = (show (ctDay time) ++ "/" ++  changeMonth (show (ctMonth time)) ++ "/" ++ show (ctYear time) ++ " - " ++ show (ctHour time) ++ ":" ++ show (ctMin time) ++ ":" ++ show (ctSec time))
 					case ganhador of
 						X -> do
 							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador O venceu.\n")
