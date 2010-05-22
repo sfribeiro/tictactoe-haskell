@@ -7,7 +7,7 @@ menuJogo :: String
 menuJogo = "&Jogo"
 
 menuNovoJogoCPU :: String
-menuNovoJogoCPU = "&Novo jogo - contra CPU"
+menuNovoJogoCPU = "Novo jogo - contra CPU"
 ajudaNovoJogoCPU :: String
 ajudaNovoJogoCPU = "Inicia um novo jogo contra a CPU"
 
@@ -87,13 +87,13 @@ msgSobre =
     "- Sergio Ferreira Ribeiro"
 
 strX:: String
-strX = "X"
+strX = "vezx"
 
 strO :: String
-strO = "O"
+strO = "vezo"
 
 strVazio :: String
-strVazio = "VAZIO"
+strVazio = "vazio"
 
 dlgInvalidaT :: String
 dlgInvalidaT = "Jogada Invalida!"

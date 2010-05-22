@@ -86,12 +86,14 @@ gui = do
 	
 	--Jogo
 	set mSair [on command := close f]
-	set mNovo11 [on command := novoJogoP amb 1 X, checkable := True]
-	set mNovo12 [on command := novoJogoP amb 1 O, checkable := True]
-	set mNovo21 [on command := novoJogoP amb 2 X, checkable := True]
-	set mNovo22 [on command := novoJogoP amb 2 O, checkable := True]
+	set mNovo11 [on command := novoJogoP amb 1 X]
+	set mNovo12 [on command := novoJogoP amb 1 O]
+	set mNovo21 [on command := novoJogoP amb 2 X]
+	set mNovo22 [on command := novoJogoP amb 2 O]
+	set mFecha [on command := fecharJogoP amb, enabled := False]
 	
 	--Opções
+	set mAvisar [on command := mudaAviso aviso mAvisar, checkable := True, checked := True]
 	set mSkin1 [on command := aplicaSkin amb "padrao", checked := True]
 	set mSkin2 [on command := aplicaSkin amb "LaVermelha"]
 	
