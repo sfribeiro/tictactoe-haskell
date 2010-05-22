@@ -12,7 +12,7 @@ somJogada s estado = do
 		x <- get s value
 		if (x)
 			then do
-				play(sound "sounds/somJogada" ++ estado ++ ".wav")
+				play(sound ("sounds/somJogada" ++ estado ++ ".wav"))
 			else do
 				return ()
 		

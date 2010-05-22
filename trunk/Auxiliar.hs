@@ -178,7 +178,7 @@ jogar a (x,y) est _ = do
 	t0 <- get (ambTbl a) value
 	e <- get (ambVez a) value
 	m <- get (ambMod a) value
-	somJogada (ambSom a) strEstado e
+	somJogada (ambSom a) (strEstado e)
 	if(not (testaJogada t0 (x,y,e)))
 		then do
 			av <- get (ambAvs a) value
