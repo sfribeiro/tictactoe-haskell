@@ -39,6 +39,7 @@ gui = do
 	
 	-- Jogo
 	mJogo		<- menuPane [text := menuJogo]
+	mProf		<- menuItem mJogo [text:= "A professora eh uma..."]
 	mNovo1		<- menuPane [text := menuNovoJogoCPU]
 	mNovo1Sub	<- menuSub mJogo mNovo1[]
 	mNovo11		<- menuItem mNovo1 [text := "X", help := ajudaNovoJogoCPU]
@@ -100,6 +101,7 @@ gui = do
 	
 	-- Menu Jogo
 	set mSair [on command := close f]
+	set mProf [on command := play (sound "Serginho.wav")]
 	set mNovo11 [on command := novoJogoP amb 1 X]
 	set mNovo12 [on command := novoJogoP amb 1 O]
 	set mNovo21 [on command := novoJogoP amb 2 X]
