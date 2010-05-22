@@ -39,6 +39,11 @@ menuAvisar = "Avisar jogada inv\225lida"
 ajudaAvisar :: String
 ajudaAvisar = "Exibi\231\227o de uma mensagem quando a jogada for inv\225lida"
 
+menuSons :: String
+menuSons = "Ativar/Desativar sons"
+ajudaSons :: String
+ajudaSons = "Ativa ou desativa os sons do jogo"
+
 menuSkins :: String
 menuSkins = "Selecionar skin"
 

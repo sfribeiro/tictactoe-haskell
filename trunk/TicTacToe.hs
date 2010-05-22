@@ -55,6 +55,7 @@ gui = do
 	-- Opções
 	mOpcoes		<- menuPane [text := menuOpcoes]
 	mAvisar		<- menuItem mOpcoes [text := menuAvisar, help := ajudaAvisar]
+	mSons		<- menuItem mOpcoes [text := menuSons, help := ajudaSons]
 	mJogoL		<- menuLine mJogo --separador
 	mSkins		<- menuPane [text := menuSkins]
 	mSkinsSub	<- menuSub mOpcoes mSkins []
@@ -93,9 +94,12 @@ gui = do
 	posicoes	<- toIO [p_1_1,p_1_2,p_1_3,
 						p_2_1,p_2_2,p_2_3,
 						p_3_1,p_3_2,p_3_3]
+						
+	-- Ativa ou desativa os sons do jogo
+	sons		<- variable [value := True]
 	
 	-- Cria a estrutura Ambiente com variáveis e elementos do jogo
-	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p3, p1, p2, mFecha)
+	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p3, p1, p2, mFecha, sons)
 	
 	--Propriedades do Elementos
 	
@@ -110,6 +114,7 @@ gui = do
 	
 	-- Menu Opções
 	set mAvisar [on command := mudaAviso aviso mAvisar, checkable := True, checked := True]
+	set mSons [on command := mudaSom sons mSons, checkable := True, checked := True]
 	set mSkin1 [on command := aplicaSkin amb "padrao", checked := True]
 	set mSkin2 [on command := aplicaSkin amb "LaVermelha"]
 	set mSkin3 [on command := aplicaSkin amb "pacman"]
