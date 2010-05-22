@@ -43,6 +43,9 @@ menuSkin1 = "1. Padrao"
 menuSkin2 :: String
 menuSkin2 = "2. LaVermelha"
 
+menuSkin3 :: String
+menuSkin3 = "3. PacMan"
+
 menuAjuda :: String
 menuAjuda = "&Ajuda"
 
