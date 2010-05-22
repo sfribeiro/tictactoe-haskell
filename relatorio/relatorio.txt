@@ -1,1 +1,3 @@
-22/May/22 - 15:8:7 - Jogador O venceu.
+22/Maio/2010 - 16:39:40 - Jogador X venceu.
+22/Maio/2010 - 16:39:48 - Jogador O venceu.
+22/Maio/2010 - 16:40:2 - Empate!
