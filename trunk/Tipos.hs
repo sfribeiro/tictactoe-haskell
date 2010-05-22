@@ -20,12 +20,18 @@ module Tipos (
 import Graphics.UI.WX
 import Mensagens
 
+-- Definições de tipos e dados
+
+-- Possível estado de uma posição no tabuleiro
 data Estado = X | O | Vazio deriving (Eq)
 
+-- Tupla com a coordenada da jogada e o estado
 type Jogada = (Int,Int,Estado)
 
+-- Tabuleiro do jogo (lista das jogadas)
 type Tabuleiro = [Jogada]
 
+-- Tupla das variáveis e elementos do jogo
 type Ambiente = (
     Frame (),       -- Janela principal do jogo
     Var Tabuleiro,  -- Tabuleiro do jogo
@@ -40,12 +46,16 @@ type Ambiente = (
     MenuItem ()     -- Item do menu que encerra a partida
     )
 	
+-- Funções para manipulação dos tipos
+	
+-- Recebe um estado e retorna o seu oposto
 oposto :: Estado -> Estado
 oposto e
     | e == X  = O
     | e == O = X
     | otherwise   = Vazio
 	
+-- Retorna somenta o elemento janela (frame)
 ambFrm :: Ambiente -> Frame ()
 ambFrm (a, _, _, _, _, _, _, _, _, _, _) = a
 
