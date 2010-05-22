@@ -160,6 +160,12 @@ aplicaSkin a s = do
     atualizaTitulo a
     atualizaVez a
 	
+--convertDateToString :: DateTime -> String
+--convertDateToSrting dt = convertDateToString2 (toGregorian dt)
+
+--convertDateToString2 :: (Integer, Int, Int, Int, Int, Int) -> String
+--convertDateToString2 (ano, mes, dia, hora, min, seg) = (dia ++ "/" ++ mes ++ "/" ++ ano ++ " - " ++ hora ++ ":" ++ min ++ ":" ++ seg)
+	
 jogar :: Ambiente -> (Int,Int) -> Estado -> Point -> IO()
 jogar a (x,y) est _ = do
 	t0 <- get (ambTbl a) value
@@ -181,14 +187,20 @@ jogar a (x,y) est _ = do
 			if (jogoConcluido t1)
 				then do
 					ganhador <- toIO (fst (vencedor t1))
+					time2 <- gettime
+					time <- toCalendarTime time2
+					let strTime = (show (ctDay time) ++ "/" ++ show (ctMonth time) ++ "/" ++ show (ctDay time) ++ " - " ++ show (ctHour time) ++ ":" ++ show (ctMin time) ++ ":" ++ show (ctSec time))
 					case ganhador of
 						X -> do
+							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador O venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
+							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador O venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVO
 						Vazio -> do
+							appendFile "relatorio/relatorio.txt" (strTime ++ " - Empate!\n")
 							infoDialog (ambFrm a) dlgConcluidoT dlgVEmpate
 					resp <- confirmDialog (ambFrm a) dlgNovoJogoT dlgNovoJogo True
 					if (resp)
@@ -269,4 +281,6 @@ mudaAviso a m = do
         else do
             set a [value := True]
             set m [checked := True]
-		
+			
+gettime :: IO ClockTime
+gettime = getClockTime

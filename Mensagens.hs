@@ -41,7 +41,7 @@ menuSkin1 :: String
 menuSkin1 = "1. Padrao"
 
 menuSkin2 :: String
-menuSkin2 = "2. LaVermelha"
+menuSkin2 = "2. La Vermelha"
 
 menuSkin3 :: String
 menuSkin3 = "3. PacMan"
