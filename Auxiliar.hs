@@ -12,6 +12,9 @@ import Regras
 import Mensagens
 import Time
 
+-- Funções para atualização do tabuleiro
+
+-- Atualiza a figura mostrada em uma posição do tabuleiro
 atualizaPosicao :: Ambiente -> Panel () -> Estado -> IO ()
 atualizaPosicao a p e = do
     set p [on paint := aux a e]
@@ -30,6 +33,7 @@ atualizaPosicao a p e = do
                     bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/vazio.bmp")
                     drawBitmap dc bmp (pt 0 0) False []
 
+-- Atualiza o título do jogo dependendo da skin					
 atualizaTitulo :: Ambiente -> IO ()
 atualizaTitulo a = do
 	set (ambPn3 a) [on paint := aux a]
@@ -40,7 +44,7 @@ atualizaTitulo a = do
 			bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/titulo.bmp")
 			drawBitmap dc bmp (pt 0 0) False []			
 
---Atualiza a vez do jogador.
+-- Atualiza a vez do jogador
 atualizaVez :: Ambiente -> IO ()
 atualizaVez a = do
 		v <- get (ambVez a) value
@@ -57,13 +61,15 @@ atualizaVez a = do
 					else do
 						bmp_fundo <- bitmapCreateFromFile ("skins/" ++ s ++ "/veznada.bmp")
 						drawBitmap dc bmp_fundo (pt 0 0) False []
-					
+
+-- Atualiza todas as posições do tabuleiro de acordo com a situação do jogo						
 atualiza :: Ambiente -> Tabuleiro -> [Panel ()] -> IO ()
 atualiza _ [] [] = do {return ()}
 atualiza a ((x, y, e):ts) (p:ps) = do
     atualizaPosicao a p e
     atualiza a ts ps		
 
+-- Insere as figuras de vencedores na posição passada
 atualizaWin :: Ambiente -> Panel () -> Estado -> IO ()
 atualizaWin a p e = do
     set p [on paint := aux a e]
@@ -81,7 +87,8 @@ atualizaWin a p e = do
                 Vazio -> do
                     bmp <- bitmapCreateFromFile ("skins/" ++ s ++ "/vazio.bmp")
                     drawBitmap dc bmp (pt 0 0) False []
-					
+
+-- Atualiza tabuleiro com as figuras dos vencedores					
 atualizaTab :: Ambiente -> Tabuleiro -> [Panel()] -> Int -> IO()
 atualizaTab _ [] [] _ = do {return ()}
 atualizaTab a ((x,y,e):ts) (p:ps) v = do
@@ -151,7 +158,8 @@ atualizaTab a ((x,y,e):ts) (p:ps) v = do
 																else do
 																	atualizaPosicao a p e														
 	atualizaTab a ts ps v																
-					
+
+-- Muda a skin do jogo e as figuras do tabuleiro	
 aplicaSkin :: Ambiente -> String -> IO ()
 aplicaSkin a s = do
     set (ambSkn a) [value := s]
@@ -166,25 +174,9 @@ aplicaSkin a s = do
 --convertDateToString2 :: (Integer, Int, Int, Int, Int, Int) -> String
 --convertDateToString2 (ano, mes, dia, hora, min, seg) = (dia ++ "/" ++ mes ++ "/" ++ ano ++ " - " ++ hora ++ ":" ++ min ++ ":" ++ seg)
 
+--Funções para efetivar jogadas
 
-changeMonth :: String -> String
-changeMonth "January" = "Janeiro"
-changeMonth "February" = "Fevereiro"
-changeMonth "Match" = "Mar\231o"
-changeMonth "April" = "Abril"
-changeMonth "May" = "Maio"
-changeMonth "June" = "Junho"
-changeMonth "July" = "Julho"
-changeMonth "August" = "Agosto"
-changeMonth "September" = "Setembro"
-changeMonth "October" = "Outubro"
-changeMonth "November" = "Novembro"
-changeMonth "December" = "Dezembro"
-changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois.
-
-
-
-	
+-- Realiza ou rejeita uma jogada feita
 jogar :: Ambiente -> (Int,Int) -> Estado -> Point -> IO()
 jogar a (x,y) est _ = do
 	t0 <- get (ambTbl a) value
@@ -236,13 +228,26 @@ jogar a (x,y) est _ = do
 							infoDialog (ambFrm a) "ERRO!" "Ainda nao implementado haha"
 						else do
 							return ()
-	
+
+-- Funções para mudar parâmetros do jogo
+							
+-- Ativa a ação do click nas posições do tabuleiro
 ativaJogo :: Ambiente -> Tabuleiro -> [Panel()] -> Estado -> IO()
 ativaJogo _ [] [] _ = do {return ()}
 ativaJogo a ((x,y,e):ts) (p:ps) est = do
 	set p [on click := jogar a (x,y) est]
 	ativaJogo a ts ps est
-	
+
+-- Desativa a ação do click nas posições do tabuleiro	
+desativaJogo :: [Panel ()] -> IO ()
+desativaJogo [] = do {return ()}
+desativaJogo (p:ps) = do
+    set p [on click := nada]
+    desativaJogo ps
+    where
+        nada _ = do {return ()}
+
+-- Inicia um novo jogo		
 novoJogo :: Ambiente -> Int -> Estado -> IO()
 novoJogo a m e = do
 	t0 <- get (ambTbl a) value
@@ -253,7 +258,8 @@ novoJogo a m e = do
 	set (ambTbl a) [value := tabZerado]
 	set (ambVez a) [value := e]
 	atualizaVez a
-	
+
+-- Pergunta se o usuário deseja iniciar um novo jogo	
 novoJogoP :: Ambiente -> Int -> Estado -> IO()
 novoJogoP a m e = do
     resp <- confirmDialog (ambFrm a) dlgNovoJogoT dlgNovoJogo True
@@ -263,14 +269,7 @@ novoJogoP a m e = do
         else do
             return ()
 			
-desativaJogo :: [Panel ()] -> IO ()
-desativaJogo [] = do {return ()}
-desativaJogo (p:ps) = do
-    set p [on click := nada]
-    desativaJogo ps
-    where
-        nada _ = do {return ()}
-			
+-- Encerra a partida ativa, caso exista			
 fecharJogo :: Ambiente -> IO ()
 fecharJogo a = do
     desativaJogo (ambPos a)
@@ -280,7 +279,8 @@ fecharJogo a = do
     set (ambTbl a) [value := tabZerado]
     set (ambVez a) [value := Vazio]
     atualizaVez a
-	
+
+-- Pergunta se o usuário deseja encerrar a partida ativa	
 fecharJogoP :: Ambiente -> IO ()
 fecharJogoP a = do
     resp <- confirmDialog (ambFrm a) dlgFecharT dlgFechar False
@@ -289,7 +289,8 @@ fecharJogoP a = do
             fecharJogo a
         else do
             return ()
-			
+
+-- Muda a variável que avisa quando uma jogada é inválida			
 mudaAviso :: Var Bool -> MenuItem () -> IO ()
 mudaAviso a m = do
     av <- get a value
@@ -301,5 +302,7 @@ mudaAviso a m = do
             set a [value := True]
             set m [checked := True]
 			
+
+-- Pega a hora local			
 gettime :: IO ClockTime
 gettime = getClockTime

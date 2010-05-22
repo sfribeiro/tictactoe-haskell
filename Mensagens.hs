@@ -1,8 +1,12 @@
 module Mensagens where
 
+-- Título da janela
 tituloJanela :: String
 tituloJanela = "hs#"
 
+-- Textos do Menu
+
+-- Jogo
 menuJogo :: String
 menuJogo = "&Jogo"
 
@@ -26,6 +30,7 @@ menuSair = "Sair"
 ajudaSair :: String
 ajudaSair = "Sai do hs#"
 
+-- Opções
 menuOpcoes :: String
 menuOpcoes = "&Op\231\245es"
 
@@ -46,6 +51,7 @@ menuSkin2 = "2. L\227 Vermelha"
 menuSkin3 :: String
 menuSkin3 = "3. PacMan"
 
+-- Ajuda
 menuAjuda :: String
 menuAjuda = "&Ajuda"
 
@@ -58,6 +64,8 @@ menuSobre :: String
 menuSobre = "Sobre..."
 ajudaSobre :: String
 ajudaSobre = "Sobre o hs#"
+
+-- Mensagens de Ajuda
 
 -- Regras do Jogo
 msgRegrasTitulo :: String
@@ -75,7 +83,7 @@ msgRegras =
     "Quando um jogador conquista o objetivo, costuma-se riscar os tr\234s s\237mbolos."
 
 
-
+-- Sobre o Jogo da Velha
 msgSobreTitulo :: String
 msgSobreTitulo = "Sobre o hs#"
 
@@ -94,6 +102,9 @@ msgSobre =
     "- Sergio Ferreira Ribeiro\n\n" ++
 	"Linguagem utilizada: Haskell" 
 
+
+-- Nome das jogadas
+
 strX:: String
 strX = "vezx"
 
@@ -103,24 +114,30 @@ strO = "vezo"
 strVazio :: String
 strVazio = "vazio"
 
+-- Mensagens dos diálogos
+
+-- Jogada inválida
 dlgInvalidaT :: String
 dlgInvalidaT = "Jogada Inv\225lida!"
 
 dlgInvalida :: String
 dlgInvalida = "Voc\234 deve jogar em outro lugar!"
 
+-- Novo jogo
 dlgNovoJogoT :: String
 dlgNovoJogoT = "Novo Jogo?"
 
 dlgNovoJogo :: String
 dlgNovoJogo = "Deseja iniciar um novo jogo?"
 
+-- Encerrar jogo
 dlgFecharT :: String
 dlgFecharT = "Encerrar Partida?"
 
 dlgFechar :: String
 dlgFechar = "Deseja encerrar a partida atual?"
 
+-- Jogo concluído
 dlgConcluidoT :: String
 dlgConcluidoT = "Jogo Conclu\237do!"
 
@@ -132,3 +149,19 @@ dlgVO = "O VENCEU!"
 
 dlgVEmpate :: String
 dlgVEmpate = "JOGO EMPATADO!"
+
+-- Tradução dos nomes dos meses
+changeMonth :: String -> String
+changeMonth "January" = "Janeiro"
+changeMonth "February" = "Fevereiro"
+changeMonth "Match" = "Mar\231o"
+changeMonth "April" = "Abril"
+changeMonth "May" = "Maio"
+changeMonth "June" = "Junho"
+changeMonth "July" = "Julho"
+changeMonth "August" = "Agosto"
+changeMonth "September" = "Setembro"
+changeMonth "October" = "Outubro"
+changeMonth "November" = "Novembro"
+changeMonth "December" = "Dezembro"
+changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois.
