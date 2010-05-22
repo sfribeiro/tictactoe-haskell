@@ -2,7 +2,8 @@ module Auxiliar (
     aplicaSkin,
     novoJogoP,
     fecharJogoP,
-    mudaAviso
+    mudaAviso,
+	mudaSom
     ) where
 	
 import Graphics.UI.WX
@@ -301,6 +302,18 @@ mudaAviso a m = do
         else do
             set a [value := True]
             set m [checked := True]
+
+-- Muda a variável que ativa ou desativa o som			
+mudaSom :: Var Bool -> MenuItem() -> IO ()
+mudaSom a m = do
+	s <- get a value
+	if(s)
+		then do
+			set a [value := False]
+			set m [checked := False]
+		else do
+			set a [value := True]
+			set m [checked := True]
 			
 -- Funções do Tempo
 
