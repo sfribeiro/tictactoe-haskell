@@ -170,6 +170,19 @@ aplicaSkin a s = do
     atualizaTitulo a
     atualizaVez a
 	
+--Mostra resultado
+msgResultadoTitulo :: String
+msgResultadoTitulo = "Resultados"
+
+msgResultado :: Ambiente -> IO ()
+msgResultado a = do
+	rel <- get (ambRel a) value
+	if (rel == "")
+		then do
+			infoDialog (ambFrm a) msgResultadoTitulo "Nenhum hist\243rico de jogo"
+		else do
+			infoDialog (ambFrm a) msgResultadoTitulo ("  Data         -    Hora     -     Vencedor\n\n" ++ (rel))
+	
 --Funções para efetivar jogadas
 
 -- Realiza ou rejeita uma jogada feita
@@ -178,6 +191,7 @@ jogar a (x,y) est _ = do
 	t0 <- get (ambTbl a) value
 	e <- get (ambVez a) value
 	m <- get (ambMod a) value
+	r <- get (ambRel a) value
 	somJogada (ambSom a) (strEstado e)
 	if(not (testaJogada t0 (x,y,e)))
 		then do
@@ -202,15 +216,18 @@ jogar a (x,y) est _ = do
 						X -> do
 							somVitoria (ambSom a)
 							appendFile arqRelatorio (strTime ++ " - Jogador X venceu.\n")
+							let r = r ++ (strTime ++ " - Jogador X venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
 							somVitoria (ambSom a)
 							appendFile arqRelatorio (strTime ++ " - Jogador O venceu.\n")
+							let r = r ++ (strTime ++ " - Jogador O venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVO
 						Vazio -> do
 							appendFile arqRelatorio (strTime ++ " - Empate!\n")
+							let r = r ++ (strTime ++ " - Empate!\n")
 							infoDialog (ambFrm a) dlgConcluidoT dlgVEmpate
 					resp <- confirmDialog (ambFrm a) dlgNovoJogoT dlgNovoJogo True
 					if (resp)

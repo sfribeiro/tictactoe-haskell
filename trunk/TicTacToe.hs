@@ -61,7 +61,7 @@ gui = do
 	mSkin1		<- menuRadioItem mSkins [text := menuSkin1]
 	mSkin2		<- menuRadioItem mSkins [text := menuSkin2]
 	mSkin3      <- menuRadioItem mSkins [text := menuSkin3]
-        mResultados <- menuItem mOpcoes [text := menuResultado, help := ajudaResultado]
+	mResultados <- menuItem mOpcoes [text := menuResultado, help := ajudaResultado]
 
 	-- Ajuda
 	mAjuda		<- menuHelp [text := menuAjuda]
@@ -98,8 +98,11 @@ gui = do
 	-- Ativa ou desativa os sons do jogo
 	sons		<- variable [value := True]
 	
+	-- Carrega o relatório de jogos
+	rel			<- variable [value := relatorioJogos]
+	
 	-- Cria a estrutura Ambiente com variáveis e elementos do jogo
-	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p3, p1, p2, mFecha, sons)
+	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p3, p1, p2, mFecha, sons, rel)
 	
 	--Propriedades do Elementos
 	
@@ -117,7 +120,7 @@ gui = do
 	set mSkin1 [on command := aplicaSkin amb "padrao", checked := True]
 	set mSkin2 [on command := aplicaSkin amb "LaVermelha"]
 	set mSkin3 [on command := aplicaSkin amb "pacman"]
-        set mResultados [on command := infoDialog f msgResultadoTitulo msgResultado ]
+	set mResultados [on command := msgResultado amb]
 	
 	-- Menu Ajuda
 	set mRegras [on command := infoDialog f msgRegrasTitulo msgRegras]
