@@ -120,7 +120,7 @@ gui = do
 	set mSkin1 [on command := aplicaSkin amb "padrao", checked := True]
 	set mSkin2 [on command := aplicaSkin amb "LaVermelha"]
 	set mSkin3 [on command := aplicaSkin amb "pacman"]
-	set mResultados [on command := msgResultado amb]
+	set mResultados [on command := resultados amb]
 	
 	-- Menu Ajuda
 	set mRegras [on command := infoDialog f msgRegrasTitulo msgRegras]
