@@ -72,8 +72,8 @@ msgResultadoTitulo = "Resultados"
 
 msgResultado :: String
 msgResultado 
-	| unsafePerformIO (doesFileExist arqRelatorio) == False = "Nenhum hist\243rico de jogo"
-	| otherwise =  unsafePerformIO (readFile arqRelatorio)
+	| unsafePerformIO (doesFileExist arqRelatorio) = unsafePerformIO (readFile arqRelatorio)
+	| otherwise =  "Nenhum hist\243rico de jogo"
 
 -- Ajuda
 menuAjuda :: String
