@@ -1,5 +1,13 @@
 module Mensagens where
 
+
+
+
+arqRelatorio :: String  -- caminho para o arquivo  -- Depois colocar nas funções de baixo
+arqRelatorio = "relatorio/relatorio.txt"
+
+-- Funções para atualização do tabuleiro
+
 -- Título da janela
 tituloJanela :: String
 tituloJanela = "hs#"
@@ -56,6 +64,9 @@ menuSkin2 = "2. L\227 Vermelha"
 menuSkin3 :: String
 menuSkin3 = "3. PacMan"
 
+menuResultado :: String
+menuResultado = "Resultados"
+
 -- Ajuda
 menuAjuda :: String
 menuAjuda = "&Ajuda"
@@ -70,6 +81,8 @@ menuSobre = "Sobre..."
 ajudaSobre :: String
 ajudaSobre = "Sobre o hs#"
 
+ajudaResultado :: String
+ajudaResultado = "Exibe os ultimos resultados"
 -- Mensagens de Ajuda
 
 -- Regras do Jogo
@@ -106,6 +119,15 @@ msgSobre =
     "- Rodrigo Cesar Lira da Silva\n" ++
     "- Sergio Ferreira Ribeiro\n\n" ++
 	"Linguagem utilizada: Haskell" 
+
+
+msgResultadoTitulo :: String
+msgResultadoTitulo = "Resultados"
+
+msgResultado :: String
+msgResultado =  "Redirecionar o arqRelatorio"--TODO ver que a primeira linha é uma função que retorna o caminho do arquivo
+
+
 
 
 -- Nome das jogadas
