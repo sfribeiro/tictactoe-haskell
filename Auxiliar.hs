@@ -3,7 +3,8 @@ module Auxiliar (
     novoJogoP,
     fecharJogoP,
     mudaAviso,
-	mudaSom
+	mudaSom,
+	resultados
     ) where
 	
 import Graphics.UI.WX
@@ -13,8 +14,6 @@ import Regras
 import Mensagens
 import Time
 import Sounds
-
-
 
 -- Atualiza a figura mostrada em uma posição do tabuleiro
 atualizaPosicao :: Ambiente -> Panel () -> Estado -> IO ()
@@ -174,8 +173,8 @@ aplicaSkin a s = do
 msgResultadoTitulo :: String
 msgResultadoTitulo = "Resultados"
 
-msgResultado :: Ambiente -> IO ()
-msgResultado a = do
+resultados :: Ambiente -> IO ()
+resultados a = do
 	rel <- get (ambRel a) value
 	if (rel == "")
 		then do
@@ -191,7 +190,6 @@ jogar a (x,y) est _ = do
 	t0 <- get (ambTbl a) value
 	e <- get (ambVez a) value
 	m <- get (ambMod a) value
-	r <- get (ambRel a) value
 	somJogada (ambSom a) (strEstado e)
 	if(not (testaJogada t0 (x,y,e)))
 		then do
@@ -216,18 +214,24 @@ jogar a (x,y) est _ = do
 						X -> do
 							somVitoria (ambSom a)
 							appendFile arqRelatorio (strTime ++ " - Jogador X venceu.\n")
-							let r = r ++ (strTime ++ " - Jogador X venceu.\n")
+							r <- get (ambRel a) value
+							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador X venceu.\n"))]
+							r <- get (ambRel a) value
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
 							somVitoria (ambSom a)
 							appendFile arqRelatorio (strTime ++ " - Jogador O venceu.\n")
-							let r = r ++ (strTime ++ " - Jogador O venceu.\n")
+							r <- get (ambRel a) value
+							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador O venceu.\n"))]
+							r <- get (ambRel a) value
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVO
 						Vazio -> do
 							appendFile arqRelatorio (strTime ++ " - Empate!\n")
-							let r = r ++ (strTime ++ " - Empate!\n")
+							r <- get (ambRel a) value
+							set (ambRel a) [value := (juntaString r (strTime ++ " - Empate!\n"))]
+							r <- get (ambRel a) value
 							infoDialog (ambFrm a) dlgConcluidoT dlgVEmpate
 					resp <- confirmDialog (ambFrm a) dlgNovoJogoT dlgNovoJogo True
 					if (resp)
@@ -331,6 +335,9 @@ mudaSom a m = do
 			set a [value := True]
 			set m [checked := True]
 			
+			
+juntaString :: String -> String -> String
+juntaString a b = a ++ b
 -- Funções do Tempo
 
 -- Pega a hora local			
