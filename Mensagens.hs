@@ -66,14 +66,11 @@ menuResultado = "Resultados"
 
 arqRelatorio :: String  -- caminho para o arquivo
 arqRelatorio = "relatorio/relatorio.txt"
-
-msgResultadoTitulo :: String
-msgResultadoTitulo = "Resultados"
-
-msgResultado :: String
-msgResultado 
-	| unsafePerformIO (doesFileExist arqRelatorio) = unsafePerformIO (readFile arqRelatorio) -- Ler o arquivo de relatorio
-	| otherwise =  "Nenhum hist\243rico de jogo"
+	
+relatorioJogos :: String
+relatorioJogos
+	| unsafePerformIO (doesFileExist arqRelatorio) == False = ""
+	| otherwise = unsafePerformIO (readFile arqRelatorio)
 
 -- Ajuda
 menuAjuda :: String
