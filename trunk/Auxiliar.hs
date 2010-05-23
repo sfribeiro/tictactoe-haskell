@@ -14,7 +14,7 @@ import Mensagens
 import Time
 import Sounds
 
--- Funções para atualização do tabuleiro
+
 
 -- Atualiza a figura mostrada em uma posição do tabuleiro
 atualizaPosicao :: Ambiente -> Panel () -> Estado -> IO ()
