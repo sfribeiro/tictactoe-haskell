@@ -1,18 +1,2 @@
-22/Maio/2010 - 16:39:40 - Jogador X venceu.
-22/Maio/2010 - 16:39:48 - Jogador O venceu.
-22/Maio/2010 - 16:40:2 - Empate!
-22/Maio/2010 - 18:9:29 - Jogador O venceu.
-22/Maio/2010 - 18:57:00 - Jogador X venceu.
-22/Maio/2010 - 18:58:37 - Jogador X venceu.
-22/Maio/2010 - 19:29:36 - Jogador X venceu.
-22/Maio/2010 - 19:30:38 - Jogador X venceu.
-22/Maio/2010 - 19:32:08 - Jogador X venceu.
-<<<<<<< .mine
-22/Maio/2010 - 20:10:10 - Jogador X venceu.
-=======
-22/Maio/2010 - 19:34:47 - Jogador X venceu.
-22/Maio/2010 - 19:34:56 - Empate!
-22/Maio/2010 - 19:35:08 - Jogador X venceu.
-22/Maio/2010 - 19:36:25 - Jogador O venceu.
-22/Maio/2010 - 20:30:16 - Jogador X venceu.
->>>>>>> .r56
+22/Maio/2010 - 22:49:29 - Jogador O venceu.
+22/Maio/2010 - 22:50:32 - Jogador O venceu.

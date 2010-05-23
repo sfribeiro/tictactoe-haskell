@@ -1,10 +1,7 @@
 module Mensagens where
 
 import System.IO.Unsafe
-
-
-arqRelatorio :: String  -- caminho para o arquivo  -- Depois colocar nas funções de baixo
-arqRelatorio = "relatorio/relatorio.txt"
+import System.Directory
 
 -- Funções para atualização do tabuleiro
 
@@ -67,11 +64,16 @@ menuSkin3 = "3. PacMan"
 menuResultado :: String
 menuResultado = "Resultados"
 
+arqRelatorio :: String  -- caminho para o arquivo
+arqRelatorio = "relatorio/relatorio.txt"
+
 msgResultadoTitulo :: String
 msgResultadoTitulo = "Resultados"
 
 msgResultado :: String
-msgResultado =  unsafePerformIO (readFile "relatorio/relatorio.txt")
+msgResultado 
+	| unsafePerformIO (doesFileExist arqRelatorio) == False = "Nenhum hist\243rico de jogo"
+	| otherwise =  unsafePerformIO (readFile arqRelatorio)
 
 -- Ajuda
 menuAjuda :: String
