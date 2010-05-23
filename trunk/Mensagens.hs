@@ -72,7 +72,7 @@ msgResultadoTitulo = "Resultados"
 
 msgResultado :: String
 msgResultado 
-	| unsafePerformIO (doesFileExist arqRelatorio) = unsafePerformIO (readFile arqRelatorio)
+	| unsafePerformIO (doesFileExist arqRelatorio) = unsafePerformIO (readFile arqRelatorio) -- Ler o arquivo de relatorio
 	| otherwise =  "Nenhum hist\243rico de jogo"
 
 -- Ajuda

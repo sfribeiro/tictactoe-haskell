@@ -201,16 +201,16 @@ jogar a (x,y) est _ = do
 					case ganhador of
 						X -> do
 							somVitoria (ambSom a)
-							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador X venceu.\n")
+							appendFile arqRelatorio (strTime ++ " - Jogador X venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
 							somVitoria (ambSom a)
-							appendFile "relatorio/relatorio.txt" (strTime ++ " - Jogador O venceu.\n")
+							appendFile arqRelatorio (strTime ++ " - Jogador O venceu.\n")
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVO
 						Vazio -> do
-							appendFile "relatorio/relatorio.txt" (strTime ++ " - Empate!\n")
+							appendFile arqRelatorio (strTime ++ " - Empate!\n")
 							infoDialog (ambFrm a) dlgConcluidoT dlgVEmpate
 					resp <- confirmDialog (ambFrm a) dlgNovoJogoT dlgNovoJogo True
 					if (resp)
