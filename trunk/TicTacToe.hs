@@ -14,7 +14,7 @@ gui :: IO()
 gui = do
 	
 	-- Cria a janela do jogo
-	f 			<- frameFixed [text := tituloJanela]
+	f 			<- frameFixed [text := tituloJanela, picture := "tictactoe.ico"]
 	
 	-- Cria os paineis da janela
 	
