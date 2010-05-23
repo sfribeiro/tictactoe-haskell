@@ -1,6 +1,6 @@
 module Mensagens where
 
-
+import System.IO.Unsafe
 
 
 arqRelatorio :: String  -- caminho para o arquivo  -- Depois colocar nas funções de baixo
@@ -67,6 +67,12 @@ menuSkin3 = "3. PacMan"
 menuResultado :: String
 menuResultado = "Resultados"
 
+msgResultadoTitulo :: String
+msgResultadoTitulo = "Resultados"
+
+msgResultado :: String
+msgResultado =  unsafePerformIO (readFile "relatorio/relatorio.txt")
+
 -- Ajuda
 menuAjuda :: String
 menuAjuda = "&Ajuda"
@@ -120,12 +126,6 @@ msgSobre =
     "- Sergio Ferreira Ribeiro\n\n" ++
 	"Linguagem utilizada: Haskell" 
 
-
-msgResultadoTitulo :: String
-msgResultadoTitulo = "Resultados"
-
-msgResultado :: String
-msgResultado =  "Redirecionar o arqRelatorio"--TODO ver que a primeira linha é uma função que retorna o caminho do arquivo
 
 
 
