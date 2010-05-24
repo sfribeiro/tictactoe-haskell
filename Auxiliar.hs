@@ -215,22 +215,22 @@ jogar a (x,y) est _ = do
 							somVitoria (ambSom a)
 							appendFile arqRelatorio (strTime ++ " - Jogador X venceu.\n")
 							r <- get (ambRel a) value
-							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador X venceu.\n"))]
+							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador X .\n"))]
 							r <- get (ambRel a) value
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
 							somVitoria (ambSom a)
-							appendFile arqRelatorio (strTime ++ " - Jogador O venceu.\n")
+							appendFile arqRelatorio (strTime ++ " - Jogador O venceu\n")
 							r <- get (ambRel a) value
-							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador O venceu.\n"))]
+							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador O\n"))]
 							r <- get (ambRel a) value
 							atualizaTab a t1 (ambPos a) (snd(vencedor t1))
 							infoDialog (ambFrm a) dlgConcluidoT dlgVO
 						Vazio -> do
 							appendFile arqRelatorio (strTime ++ " - Empate!\n")
 							r <- get (ambRel a) value
-							set (ambRel a) [value := (juntaString r (strTime ++ " - Empate!\n"))]
+							set (ambRel a) [value := (juntaString r (strTime ++ " - Empate\n"))]
 							r <- get (ambRel a) value
 							infoDialog (ambFrm a) dlgConcluidoT dlgVEmpate
 					resp <- confirmDialog (ambFrm a) dlgNovoJogoT dlgNovoJogo True
