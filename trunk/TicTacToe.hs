@@ -101,8 +101,11 @@ gui = do
 	-- Carrega o relatório de jogos
 	rel			<- variable [value := relatorioJogos]
 	
+	-- Armazena a árvore de possibilidades
+	arvore		<- variable [value := Nulo]
+	
 	-- Cria a estrutura Ambiente com variáveis e elementos do jogo
-	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p3, p1, p2, mFecha, sons, rel)
+	amb 		<- toIO (f, tabuleiro, modo, vez, aviso, skin, posicoes, p3, p1, p2, mFecha, sons, rel, arvore)
 	
 	--Propriedades do Elementos
 	

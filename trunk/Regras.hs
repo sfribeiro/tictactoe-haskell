@@ -3,11 +3,16 @@ module Regras (
 	executaJogada,
 	tabZerado,
 	jogoConcluido,
-	vencedor
+	vencedor,
+	gerarArvore,
+	buscarJogada,
+	quadrado
 	)
 	where
 	
 import Tipos
+import Graphics.UI.WX
+import System.IO.Unsafe
 
 --Tabuleiro zerado
 tabZerado :: Tabuleiro
@@ -76,3 +81,87 @@ jogoConcluido t
 	|fst (vencedor t) == Vazio = False
 	|otherwise = True
 			
+			
+valores :: (Int,Int) -> Int
+valores (x,y)
+	|x == 1 && y == 1 = 6
+	|x == 1 && y == 2 = 1
+	|x == 1 && y == 3 = 8
+	|x == 2 && y == 1 = 7
+	|x == 2 && y == 2 = 5
+	|x == 2 && y == 3 = 3
+	|x == 3 && y == 1 = 2
+	|x == 3 && y == 2 = 9
+	|x == 3 && y == 3 = 4
+			
+posEstado :: Estado -> Tabuleiro -> [Int]
+posEstado _ [] = []
+posEstado est ((x,y,e):as)
+	|est == e = (valores (x,y)):posEstado est as
+	|otherwise = posEstado est as
+	
+posEstadoAtual :: Ambiente -> [Int]
+posEstadoAtual a = (posEstado (unsafePerformIO (get (ambVez a) value)) (unsafePerformIO (get (ambTbl a) value)))
+
+posEstadoVazio :: Ambiente -> [Int]
+posEstadoVazio a = (posEstado Vazio (unsafePerformIO (get (ambTbl a) value)))
+	
+somatorio :: [Int] -> [Int]
+somatorio [] = []
+somatorio (a:as)
+	| as == [] = [a]
+	| otherwise = map (+a) as ++ somatorio as 
+
+possibilidadeGanhar :: Ambiente -> [Int] -> [Int] -> Int
+possibilidadeGanhar a [] _ = head (posEstadoVazio a)
+possibilidadeGanhar am (a:as) lista
+	|length l /= 0 = head l
+	|otherwise = possibilidadeGanhar am as lista
+	where 
+		l = filter (\x -> (x+a==15 && x <= 9 && not (elem x (posEstadoAtual am)))) lista
+		
+parJogada :: Ambiente -> (Int, Int)
+parJogada a = (n,v)
+	where
+		n = possibilidadeGanhar a (somatorio (posEstadoAtual a)) (posEstadoVazio a)
+		v = head (posEstadoVazio a) -- Usar aleatório depois
+		
+gerarRaiz :: Arvore -> Ambiente -> Arvore
+gerarRaiz ar a
+	|n == 5 = No (6,0) Nulo Nulo
+	|otherwise = No (5,0) Nulo Nulo
+	where
+		n = head (posEstado (oposto (unsafePerformIO ((get (ambVez a) value)))) (unsafePerformIO (get (ambTbl a) value)))
+	
+gerarNo :: Arvore -> Ambiente -> [Int] -> Arvore
+gerarNo (No (x,y) esq dir) a (dire:as)
+	|esq == Nulo && dir == Nulo = No (x,y) (No (n,1) Nulo Nulo) (No (m,2) Nulo Nulo)
+	|dire == 1 = No (x,y) (gerarNo esq a as) dir
+	|dire == 2 = No (x,y) esq (gerarNo dir a as)
+	where
+		n = fst (parJogada a)
+		m = snd (parJogada a)
+
+gerarArvore :: Arvore -> Ambiente -> [Int] -> Arvore
+gerarArvore ar a dire
+	|ar == Nulo = gerarRaiz ar a
+	|otherwise = gerarNo ar a dire
+	
+buscarJogada :: Arvore -> [Int] -> Int
+buscarJogada (No (x,y) esq dir) (a:as)
+	|esq == Nulo && dir == Nulo = x
+	|a == 1 = buscarJogada esq as
+	|a == 2 = buscarJogada dir as
+	
+quadrado :: Int -> (Int, Int)
+quadrado x
+	|x == 6 = (1,1)
+	|x == 1 = (1,2)
+	|x == 8 = (1,3)
+	|x == 7 = (2,1)
+	|x == 5 = (2,2)
+	|x == 3 = (2,3)
+	|x == 2 = (3,1)
+	|x == 9 = (3,2)
+	|x == 4 = (3,3)
+	
