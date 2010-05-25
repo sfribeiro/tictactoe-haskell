@@ -5,6 +5,7 @@ module Auxiliar (
     mudaAviso,
 	mudaSom,
 	resultados
+
     ) where
 	
 import Graphics.UI.WX
@@ -185,8 +186,8 @@ resultados a = do
 --Funções para efetivar jogadas
 
 -- Realiza ou rejeita uma jogada feita
-jogar :: Ambiente -> (Int,Int) -> Estado -> Point -> IO()
-jogar a (x,y) est _ = do
+jogar :: Ambiente -> (Int,Int) -> Estado -> [Int] -> Point -> IO()
+jogar a (x,y) est direcao _ = do
 	t0 <- get (ambTbl a) value
 	e <- get (ambVez a) value
 	m <- get (ambMod a) value
@@ -244,10 +245,24 @@ jogar a (x,y) est _ = do
 					atualizaVez a
 					if(oposto e == oposto est && m == 1)
 						then do
-							--jogarCPU a
-							infoDialog (ambFrm a) "ERRO!" "Ainda nao implementado haha"
+							ar <- get (ambArv a) value
+							jogarCPU a e ar direcao
 						else do
 							return ()
+							
+jogarCPU :: Ambiente -> Estado -> Arvore -> [Int] -> IO ()
+jogarCPU a est ar direcao = do
+	desativaJogo (ambPos a)
+	tmp <- timer (ambFrm a) [interval := 500]
+	set tmp [on command := aux1 a tmp]
+	where
+		aux1 a tmp = do
+			set tmp [enabled := False]
+			t0 <- get (ambTbl a) value
+			jogar a (quadrado(buscarJogada (gerarArvore ar a direcao) direcao)) est direcao (pt 0 0)
+			set (ambArv a) [value := gerarArvore ar a direcao]
+			ativaJogo a t0 (ambPos a) est
+			
 
 -- Funções para mudar parâmetros do jogo
 							
@@ -255,7 +270,7 @@ jogar a (x,y) est _ = do
 ativaJogo :: Ambiente -> Tabuleiro -> [Panel()] -> Estado -> IO()
 ativaJogo _ [] [] _ = do {return ()}
 ativaJogo a ((x,y,e):ts) (p:ps) est = do
-	set p [on click := jogar a (x,y) est]
+	set p [on click := jogar a (x,y) est [1,2,1,2]]
 	ativaJogo a ts ps est
 
 -- Desativa a ação do click nas posições do tabuleiro	
@@ -278,6 +293,7 @@ novoJogo a m e = do
 	set (ambMod a) [value := m]
 	set (ambTbl a) [value := tabZerado]
 	set (ambVez a) [value := e]
+	set (ambArv a) [value := Nulo]
 	atualizaVez a
 
 -- Pergunta se o usuário deseja iniciar um novo jogo	
