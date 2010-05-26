@@ -128,16 +128,16 @@ parJogada a = (n,v)
 		
 gerarRaiz :: Arvore -> Ambiente -> Arvore
 gerarRaiz ar a
-	|n == 5 = No (6,0) Nulo Nulo
-	|otherwise = No (5,0) Nulo Nulo
+	|n == 5 = No 6 Nulo Nulo
+	|otherwise = No 5 Nulo Nulo
 	where
 		n = head (posEstado (oposto (unsafePerformIO ((get (ambVez a) value)))) (unsafePerformIO (get (ambTbl a) value)))
 	
 gerarNo :: Arvore -> Ambiente -> [Int] -> Arvore
-gerarNo (No (x,y) esq dir) a (dire:as)
-	|esq == Nulo && dir == Nulo = No (x,y) (No (n,1) Nulo Nulo) (No (m,2) Nulo Nulo)
-	|dire == 1 = No (x,y) (gerarNo esq a as) dir
-	|dire == 2 = No (x,y) esq (gerarNo dir a as)
+gerarNo (No x esq dir) a (dire:as)
+	|esq == Nulo && dir == Nulo = No x (No n Nulo Nulo) (No m Nulo Nulo)
+	|dire == 1 = No x (gerarNo esq a as) dir
+	|dire == 2 = No x esq (gerarNo dir a as)
 	where
 		n = fst (parJogada a)
 		m = snd (parJogada a)
@@ -148,7 +148,7 @@ gerarArvore ar a dire
 	|otherwise = gerarNo ar a dire
 	
 buscarJogada :: Arvore -> [Int] -> Int
-buscarJogada (No (x,y) esq dir) (a:as)
+buscarJogada (No x esq dir) (a:as)
 	|esq == Nulo && dir == Nulo = x
 	|a == 1 = buscarJogada esq as
 	|a == 2 = buscarJogada dir as

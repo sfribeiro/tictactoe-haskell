@@ -46,3 +46,10 @@
 25/05/2010 - 00:16:16 - Jogador O venceu
 25/05/2010 - 00:16:22 - Empate!
 25/05/2010 - 00:16:29 - Jogador X venceu.
+26/05/2010 - 20:09:33 - Jogador X venceu.
+26/05/2010 - 20:09:40 - Jogador O venceu
+26/05/2010 - 20:17:27 - Jogador X venceu.
+26/05/2010 - 20:22:37 - Empate!
+26/05/2010 - 20:22:44 - Empate!
+26/05/2010 - 20:22:49 - Jogador X venceu.
+26/05/2010 - 20:22:55 - Jogador O venceu
