@@ -36,7 +36,7 @@ type Jogada = (Int,Int,Estado)
 -- Tabuleiro do jogo (lista das jogadas)
 type Tabuleiro = [Jogada]
 
-data Arvore = Nulo | No (Int,Int) Arvore Arvore deriving (Eq)
+data Arvore = Nulo | No Int Arvore Arvore deriving (Eq)
 
 -- Tupla das variáveis e elementos do jogo
 type Ambiente = (

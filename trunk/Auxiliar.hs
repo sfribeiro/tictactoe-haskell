@@ -314,7 +314,6 @@ fecharJogo a = do
     set (ambFch a) [enabled := False]
     set (ambMod a) [value := 0]
     set (ambTbl a) [value := tabZerado]
-    set (ambVez a) [value := Vazio]
     atualizaVez a
 
 -- Pergunta se o usuário deseja encerrar a partida ativa	
