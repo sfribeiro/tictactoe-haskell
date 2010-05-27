@@ -110,7 +110,7 @@ somatorio :: [Int] -> [Int]
 somatorio [] = []
 somatorio (a:as)
 	| as == [] = [a]
-	| otherwise = map (+a) as ++ somatorio as 
+	| otherwise = reverse (drop 1 (reverse(map (+a) as ++ somatorio as))) 
 
 possibilidadeGanhar :: Ambiente -> [Int] -> [Int] -> Int
 possibilidadeGanhar a [] _ = head (posEstadoVazio a)

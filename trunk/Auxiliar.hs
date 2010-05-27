@@ -270,7 +270,7 @@ jogarCPU a est ar direcao = do
 ativaJogo :: Ambiente -> Tabuleiro -> [Panel()] -> Estado -> IO()
 ativaJogo _ [] [] _ = do {return ()}
 ativaJogo a ((x,y,e):ts) (p:ps) est = do
-	set p [on click := jogar a (x,y) est [1,2,1,2]]
+	set p [on click := jogar a (x,y) est [1,1,1,1]]
 	ativaJogo a ts ps est
 
 -- Desativa a ação do click nas posições do tabuleiro	
