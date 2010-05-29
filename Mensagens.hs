@@ -106,6 +106,10 @@ msgRegras =
     "Quando um jogador conquista o objetivo, costuma-se riscar os tr\234s s\237mbolos."
 
 
+--Mostra resultado
+msgResultadoTitulo :: String
+msgResultadoTitulo = "Resultados"
+
 -- Sobre o Jogo da Velha
 msgSobreTitulo :: String
 msgSobreTitulo = "Sobre o hs#"
@@ -192,5 +196,3 @@ changeMonth "November" = "11"
 changeMonth "December" = "12"
 changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois. -Digo é um putão mesmo.
 
-msgResultadoTitulo :: String
-msgResultadoTitulo = "Resultados"

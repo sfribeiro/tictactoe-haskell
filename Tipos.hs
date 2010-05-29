@@ -53,7 +53,7 @@ type Ambiente = (
     MenuItem (),    -- Item do menu que encerra a partida
 	Var Bool,		-- Variável de aviso de ativação do som
 	Var String, 	--Relatório de jogos
-    Var Arvore
+    Var Arvore      -- arvore do jogo
 	)
 	
 -- Funções para manipulação dos tipos

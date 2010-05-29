@@ -170,7 +170,7 @@ aplicaSkin a s = do
     atualizaTitulo a
     atualizaVez a
 	
---Mostra resultado
+
 resultados :: Ambiente -> IO ()
 resultados a = do
 	rel <- get (ambRel a) value
