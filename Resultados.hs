@@ -20,8 +20,8 @@ e testar a formatação da mensagem quando não houver histórico
 -- Função que muda a visibilidade de um widget
 mudarVisibilidade :: Ambiente -> IO()
 mudarVisibilidade amb 
-    | unsafePerformIO (get frame visible) = set frame [visible := False]
-    | otherwise = set frame [visible := True]
+    | unsafePerformIO (get frame enabled) = set frame [enabled := False]
+    | otherwise = set frame [visible := True, enabled := True]
         where frame = ambFrm amb
 
 
