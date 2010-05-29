@@ -248,6 +248,7 @@ jogar a (x,y) est direcao _ = do
 						else do
 							return ()
 							
+-- Faz a CPU jogar
 jogarCPU :: Ambiente -> Estado -> Arvore -> [Int] -> IO ()
 jogarCPU a est ar direcao = do
 	desativaJogo (ambPos a)
