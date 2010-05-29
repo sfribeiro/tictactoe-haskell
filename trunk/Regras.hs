@@ -163,7 +163,7 @@ gerarRaiz ar a
 	|n == 5 = No 6 Nulo Nulo
 	|otherwise = No 5 Nulo Nulo
 	where
-		n = head (posEstado (oposto (unsafePerformIO ((get (ambVez a) value)))) (unsafePerformIO (get (ambTbl a) value)))
+		n = head (posEstadoOposto a)
 	
 -- Gera os nós com duas jogadas
 gerarNo :: Arvore -> Ambiente -> [Int] -> Arvore

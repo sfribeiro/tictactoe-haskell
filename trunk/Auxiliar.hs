@@ -258,9 +258,10 @@ jogarCPU a est ar direcao = do
 		aux1 a tmp = do
 			set tmp [enabled := False]
 			t0 <- get (ambTbl a) value
-			jogar a (quadrado(buscarJogada (gerarArvore ar a direcao) direcao)) est direcao (pt 0 0)
 			set (ambArv a) [value := gerarArvore ar a direcao]
+			ar1 <- get (ambArv a) value
 			ativaJogo a t0 (ambPos a) est
+			jogar a (quadrado(buscarJogada ar1 direcao)) est direcao (pt 0 0)
 			
 
 -- Funções para mudar parâmetros do jogo
