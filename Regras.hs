@@ -45,7 +45,7 @@ testaJogada t (x, y, e)
 -- Executa a jogada
 executaJogada :: Tabuleiro -> Jogada -> Tabuleiro
 executaJogada t (x , y, e) 
-	| testaJogada t (x, y, e) == True = alteraEstado t x y e
+	| testaJogada t (x, y, e) = alteraEstado t x y e
 	| otherwise = t
 
 -- Verifica a quantidade de Vazios no tabuleiro	
