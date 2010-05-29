@@ -15,6 +15,7 @@ import Regras
 import Mensagens
 import Time
 import Sounds
+import Aleatorio
 
 -- Atualiza a figura mostrada em uma posição do tabuleiro
 atualizaPosicao :: Ambiente -> Panel () -> Estado -> IO ()
@@ -267,7 +268,7 @@ jogarCPU a est ar direcao = do
 ativaJogo :: Ambiente -> Tabuleiro -> [Panel()] -> Estado -> IO()
 ativaJogo _ [] [] _ = do {return ()}
 ativaJogo a ((x,y,e):ts) (p:ps) est = do
-	set p [on click := jogar a (x,y) est [1,1,1,1]]
+	set p [on click := jogar a (x,y) est gerarDirecao]
 	ativaJogo a ts ps est
 
 -- Desativa a ação do click nas posições do tabuleiro	
