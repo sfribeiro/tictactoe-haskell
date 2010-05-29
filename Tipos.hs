@@ -36,6 +36,7 @@ type Jogada = (Int,Int,Estado)
 -- Tabuleiro do jogo (lista das jogadas)
 type Tabuleiro = [Jogada]
 
+-- Tipo Árvore
 data Arvore = Nulo | No Int Arvore Arvore deriving (Eq)
 
 -- Tupla das variáveis e elementos do jogo
@@ -52,8 +53,8 @@ type Ambiente = (
 	Panel (),		-- Painel que representa o título do jogo
     MenuItem (),    -- Item do menu que encerra a partida
 	Var Bool,		-- Variável de aviso de ativação do som
-	Var String, 	--Relatório de jogos
-    Var Arvore      -- arvore do jogo
+	Var String, 	-- Relatório de jogos
+    Var Arvore      -- Árvore do jogo
 	)
 	
 -- Funções para manipulação dos tipos
@@ -117,6 +118,7 @@ ambSom (_, _, _, _, _, _, _, _, _, _, _, a, _, _) = a
 ambRel :: Ambiente -> Var String
 ambRel (_, _, _, _, _, _, _, _, _, _, _, _, a, _) = a
 
+-- Retorna somente a variável da árvore
 ambArv :: Ambiente -> Var Arvore
 ambArv (_, _, _, _, _, _, _, _, _, _, _, _, _, a) = a
 

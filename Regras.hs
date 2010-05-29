@@ -82,7 +82,14 @@ jogoConcluido t
 	|fst (vencedor t) == Vazio = False
 	|otherwise = True
 			
+-- Funções para a jogada da CPU
 			
+-- Valores da matriz do tabuleiro
+-- 6 | 1 | 8
+-- 7 | 5 | 3
+-- 2 | 9 | 4
+-- Se o somatório de uma linha horizontal, vertical ou diagonal for 15
+-- então existe um vencedor			
 valores :: (Int,Int) -> Int
 valores (x,y)
 	|x == 1 && y == 1 = 6
@@ -94,28 +101,35 @@ valores (x,y)
 	|x == 3 && y == 1 = 2
 	|x == 3 && y == 2 = 9
 	|x == 3 && y == 3 = 4
-			
+
+-- Lista com os valores de um determinado estado no tabuleiro	
 posEstado :: Estado -> Tabuleiro -> [Int]
 posEstado _ [] = []
 posEstado est ((x,y,e):as)
 	|est == e = (valores (x,y)):posEstado est as
 	|otherwise = posEstado est as
 	
+-- Lista com os valores do estado atual (X ou O) do tabuleiro	
 posEstadoAtual :: Ambiente -> [Int]
 posEstadoAtual a = (posEstado (unsafePerformIO (get (ambVez a) value)) (unsafePerformIO (get (ambTbl a) value)))
 
+-- Lista com os valores do estado oposto ao atual
 posEstadoOposto :: Ambiente -> [Int]
 posEstadoOposto a = (posEstado (oposto (unsafePerformIO (get (ambVez a) value))) (unsafePerformIO (get (ambTbl a) value)))
 
+-- Lista com os valores do estado Vazio
 posEstadoVazio :: Ambiente -> [Int]
 posEstadoVazio a = (posEstado Vazio (unsafePerformIO (get (ambTbl a) value)))
-	
+
+-- Somatorio de um elemento da lista com o resto dela mesma
+-- Ex: [1,2,3,4] = [3,4,5,5,6,7]	
 somatorio :: [Int] -> [Int]
 somatorio [] = []
 somatorio (a:as)
 	| as == [] = [a]
 	| otherwise = reverse (drop 1 (reverse(map (+a) as ++ somatorio as))) 
 	
+-- Calcula o local para se defender, caso precise
 defesa :: [Int] -> [Int] -> Int
 defesa [] _ = 0
 defesa (a:as) lista
@@ -124,6 +138,7 @@ defesa (a:as) lista
 	where
 		l = filter (\x -> x+a==15) lista
 
+-- Calcula o local com mais chances de vitória
 possibilidadeGanhar :: Ambiente -> [Int] -> [Int] -> Int
 possibilidadeGanhar am [] _ = head (posEstadoVazio am)
 possibilidadeGanhar am (a:as) lista
@@ -133,13 +148,16 @@ possibilidadeGanhar am (a:as) lista
 	where 
 		l = filter (\x -> (x+a==15 && x <= 9  && (x /= 9 && a /= 6))) lista
 		d = defesa (somatorio (posEstadoOposto am)) (posEstadoVazio am) 
-		
+
+-- Calcula uma tupla com duas possiblidades de jogada
+-- Uma com chances de ganhar e outra jogada qualquer		
 parJogada :: Ambiente -> (Int, Int)
 parJogada a = (n,v)
 	where
 		n = possibilidadeGanhar a (somatorio (posEstadoAtual a)) (posEstadoVazio a)
 		v = head(posEstadoVazio a)
 		
+-- Gera a raiz da árvore de jogadas
 gerarRaiz :: Arvore -> Ambiente -> Arvore
 gerarRaiz ar a
 	|n == 5 = No 6 Nulo Nulo
@@ -147,6 +165,7 @@ gerarRaiz ar a
 	where
 		n = head (posEstado (oposto (unsafePerformIO ((get (ambVez a) value)))) (unsafePerformIO (get (ambTbl a) value)))
 	
+-- Gera os nós com duas jogadas
 gerarNo :: Arvore -> Ambiente -> [Int] -> Arvore
 gerarNo (No x esq dir) a (dire:as)
 	|esq == Nulo && dir == Nulo = No x (No n Nulo Nulo) (No m Nulo Nulo)
@@ -156,17 +175,22 @@ gerarNo (No x esq dir) a (dire:as)
 		n = fst (parJogada a)
 		m = snd (parJogada a)
 
+-- Gera a árvore de jogadas
 gerarArvore :: Arvore -> Ambiente -> [Int] -> Arvore
 gerarArvore ar a dire
 	|ar == Nulo = gerarRaiz ar a
 	|otherwise = gerarNo ar a dire
 	
+-- Busca a jogada na árvore apartir da lista passada
+-- Se 1, ele segue para o nó da esquerda
+-- Se 2, ele segue para o nó da direita
 buscarJogada :: Arvore -> [Int] -> Int
 buscarJogada (No x esq dir) (a:as)
 	|esq == Nulo && dir == Nulo = x
 	|a == 1 = buscarJogada esq as
 	|a == 2 = buscarJogada dir as
 	
+-- Coordenadas de um valor da matriz do tabuleiro
 quadrado :: Int -> (Int, Int)
 quadrado x
 	|x == 6 = (1,1)
