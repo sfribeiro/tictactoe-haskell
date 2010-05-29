@@ -35,14 +35,14 @@ relatorioJogos
 
 guiResultado a titulo resultado = do
             mudarVisibilidade a;
-            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not] -- closeable é a negação do valor padrão
-            ent <- textCtrl r [font := fontFixed,bgcolor := colorSystem (ColorBackground) , textColor := black,clientSize:= sz 350 128]
+            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not, minimizeable := False] -- closeable é a negação do valor padrão
+            ent <- textCtrl r [font := fontFixed, clientSize:= sz 350 128]
 
             clean <- button r [text := "Limpar"] 
             close <- button r [text := "Fechar",on command := do 
                                                                 close r
                                                                 mudarVisibilidade a;]
-            set ent [text:=resultado,enabled:=False]
+            set ent [text:=resultado, color := white, bgcolor := black]
             set r [layout:= column 5 [hfill (widget ent),
                                       floatCenter $ row 5 [widget clean, widget close]],
                   clientSize:= sz 350 128]
