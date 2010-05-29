@@ -1,7 +1,7 @@
 module Mensagens where
 
-import System.IO.Unsafe
-import System.Directory
+
+
 
 -- Funções para atualização do tabuleiro
 
@@ -66,11 +66,6 @@ menuResultado = "Resultados"
 
 arqRelatorio :: String  -- caminho para o arquivo
 arqRelatorio = "relatorio/relatorio.txt"
-	
-relatorioJogos :: String
-relatorioJogos
-	| unsafePerformIO (doesFileExist arqRelatorio) == False = ""
-	| otherwise = unsafePerformIO (readFile arqRelatorio)
 
 -- Ajuda
 menuAjuda :: String

@@ -6,7 +6,7 @@ import Mensagens
 import Tipos
 import Regras
 import Auxiliar
-
+import Resultados
 main :: IO()
 main = start gui
 
@@ -18,9 +18,9 @@ gui = do
 	
 	-- Cria os paineis da janela
 	
-	p3			<- panel f [clientSize := sz 384 38]
+	p3			<- panel f [clientSize := sz 384 38] -- painel do titulo
 	p1 			<- panel f [clientSize := sz 384 384]
-	p2			<- panel f [clientSize := sz 384 38]
+	p2			<- panel f [clientSize := sz 384 38] -- painel da vez do jogador
 	
 	-- Um painel para casa posição no tabuleiro
 	p_1_1		<- panel p1 [clientSize := sz 128 128]

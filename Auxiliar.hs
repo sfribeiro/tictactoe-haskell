@@ -3,8 +3,7 @@ module Auxiliar (
     novoJogoP,
     fecharJogoP,
     mudaAviso,
-	mudaSom,
-	resultados
+	mudaSom
 
     ) where
 	
@@ -172,16 +171,7 @@ aplicaSkin a s = do
     atualizaVez a
 	
 
-resultados :: Ambiente -> IO ()
-resultados a = do
-	rel <- get (ambRel a) value
-	if (rel == "")
-		then do
-			infoDialog (ambFrm a) msgResultadoTitulo "Nenhum hist\243rico de jogo"
-		else do
-			infoDialog (ambFrm a) msgResultadoTitulo ("  Data         -    Hora     -     Vencedor\n\n" ++ (rel))
-	
---Funções para efetivar jogadas
+
 
 -- Realiza ou rejeita uma jogada feita
 jogar :: Ambiente -> (Int,Int) -> Estado -> [Int] -> Point -> IO()
