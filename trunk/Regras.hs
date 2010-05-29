@@ -11,6 +11,7 @@ module Regras (
 	where
 	
 import Tipos
+import Aleatorio
 import Graphics.UI.WX
 import System.IO.Unsafe
 
@@ -137,7 +138,7 @@ parJogada :: Ambiente -> (Int, Int)
 parJogada a = (n,v)
 	where
 		n = possibilidadeGanhar a (somatorio (posEstadoAtual a)) (posEstadoVazio a)
-		v = head (posEstadoVazio a) -- Usar aleatório depois
+		v = head(posEstadoVazio a)
 		
 gerarRaiz :: Arvore -> Ambiente -> Arvore
 gerarRaiz ar a
