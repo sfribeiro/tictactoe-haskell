@@ -103,6 +103,9 @@ posEstado est ((x,y,e):as)
 posEstadoAtual :: Ambiente -> [Int]
 posEstadoAtual a = (posEstado (unsafePerformIO (get (ambVez a) value)) (unsafePerformIO (get (ambTbl a) value)))
 
+posEstadoOposto :: Ambiente -> [Int]
+posEstadoOposto a = (posEstado (oposto (unsafePerformIO (get (ambVez a) value))) (unsafePerformIO (get (ambTbl a) value)))
+
 posEstadoVazio :: Ambiente -> [Int]
 posEstadoVazio a = (posEstado Vazio (unsafePerformIO (get (ambTbl a) value)))
 	
@@ -111,14 +114,24 @@ somatorio [] = []
 somatorio (a:as)
 	| as == [] = [a]
 	| otherwise = reverse (drop 1 (reverse(map (+a) as ++ somatorio as))) 
+	
+defesa :: [Int] -> [Int] -> Int
+defesa [] _ = 0
+defesa (a:as) lista
+	|length l /= 0 = head l
+	|otherwise = defesa as lista
+	where
+		l = filter (\x -> x+a==15) lista
 
 possibilidadeGanhar :: Ambiente -> [Int] -> [Int] -> Int
-possibilidadeGanhar a [] _ = head (posEstadoVazio a)
+possibilidadeGanhar am [] _ = head (posEstadoVazio am)
 possibilidadeGanhar am (a:as) lista
 	|length l /= 0 = head l
+	|d /= 0 = d
 	|otherwise = possibilidadeGanhar am as lista
 	where 
-		l = filter (\x -> (x+a==15 && x <= 9 && not (elem x (posEstadoAtual am)))) lista
+		l = filter (\x -> (x+a==15 && x <= 9 )) lista
+		d = defesa (somatorio (posEstadoOposto am)) (posEstadoVazio am) 
 		
 parJogada :: Ambiente -> (Int, Int)
 parJogada a = (n,v)

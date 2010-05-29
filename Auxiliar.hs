@@ -171,9 +171,6 @@ aplicaSkin a s = do
     atualizaVez a
 	
 --Mostra resultado
-msgResultadoTitulo :: String
-msgResultadoTitulo = "Resultados"
-
 resultados :: Ambiente -> IO ()
 resultados a = do
 	rel <- get (ambRel a) value
@@ -277,10 +274,10 @@ ativaJogo a ((x,y,e):ts) (p:ps) est = do
 desativaJogo :: [Panel ()] -> IO ()
 desativaJogo [] = do {return ()}
 desativaJogo (p:ps) = do
-    set p [on click := nada]
-    desativaJogo ps
-    where
-        nada _ = do {return ()}
+	set p [on click := nada]
+	desativaJogo ps
+	where
+		nada _ = do {return ()}
 
 -- Inicia um novo jogo		
 novoJogo :: Ambiente -> Int -> Estado -> IO()
@@ -309,12 +306,13 @@ novoJogoP a m e = do
 -- Encerra a partida ativa, caso exista			
 fecharJogo :: Ambiente -> IO ()
 fecharJogo a = do
-    desativaJogo (ambPos a)
-    atualiza a tabZerado (ambPos a)
-    set (ambFch a) [enabled := False]
-    set (ambMod a) [value := 0]
-    set (ambTbl a) [value := tabZerado]
-    atualizaVez a
+	desativaJogo (ambPos a)
+	atualiza a tabZerado (ambPos a)
+	set (ambFch a) [enabled := False]
+	set (ambMod a) [value := 0]
+	set (ambTbl a) [value := tabZerado]
+	set (ambArv a) [value := Nulo]
+	atualizaVez a
 
 -- Pergunta se o usuário deseja encerrar a partida ativa	
 fecharJogoP :: Ambiente -> IO ()

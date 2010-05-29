@@ -191,3 +191,6 @@ changeMonth "October" = "10"
 changeMonth "November" = "11"
 changeMonth "December" = "12"
 changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois. -Digo é um putão mesmo.
+
+msgResultadoTitulo :: String
+msgResultadoTitulo = "Resultados"
