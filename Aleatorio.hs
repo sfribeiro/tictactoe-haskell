@@ -17,7 +17,7 @@ aleatorio a b = unsafePerformIO (aux1 a b)
 				return b
 	aux2 x = (mod x 2) == 0
 
--- Gera a direção para segui na árvore aleatoriamente
+-- Gera a direção para seguir na árvore aleatoriamente
 gerarDirecao :: [Int]
 gerarDirecao 
 	|aleatorio 1 2 == 1 = [(aleatorio 1 2),(aleatorio 1 2),(aleatorio 1 2), (aleatorio 1 2)]

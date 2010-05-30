@@ -129,7 +129,6 @@ strEstado e
     | e == O = strO
     | otherwise   = strVazio
 
-
 -- Converte um tipo t para o tipo IO t
 toIO :: t -> IO t
 toIO t = do {return (t)}

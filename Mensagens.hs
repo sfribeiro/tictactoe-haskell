@@ -1,8 +1,5 @@
 module Mensagens where
 
-
-
-
 -- Funções para atualização do tabuleiro
 
 -- Título da janela
@@ -83,6 +80,7 @@ ajudaSobre = "Sobre o hs#"
 
 ajudaResultado :: String
 ajudaResultado = "Exibe os ultimos resultados"
+
 -- Mensagens de Ajuda
 
 -- Regras do Jogo
@@ -123,10 +121,6 @@ msgSobre =
     "- Rodrigo Cesar Lira da Silva\n" ++
     "- Sergio Ferreira Ribeiro\n\n" ++
 	"Linguagem utilizada: Haskell" 
-
-
-
-
 
 -- Nome das jogadas
 
@@ -189,5 +183,3 @@ changeMonth "September" = "09"
 changeMonth "October" = "10"
 changeMonth "November" = "11"
 changeMonth "December" = "12"
-changeMonth _ = "Desconhecido" -- Um homem prevenido vale por dois. -Digo é um putão mesmo.
-
