@@ -33,7 +33,6 @@ resultados a = do
 
 guiResultado a titulo resultado = do
             mudarVisibilidade a;
-<<<<<<< .mine
             r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not,position := pt 10 10, minimizeable := False] -- closeable é a negação do valor padrão
             ent <- textCtrl r [font := fontFixed, bgcolor := black , color := white, clientSize:= sz 400 256]
             clean <- button r [text := "Limpar",on command := do
