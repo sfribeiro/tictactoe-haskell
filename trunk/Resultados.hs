@@ -36,7 +36,7 @@ relatorioJogos
 guiResultado a titulo resultado = do
             mudarVisibilidade a;
 
-            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not,position := point 180 180, minimizeable := False] -- closeable é a negação do valor padrão
+            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not,position := point 0 0, minimizeable := False] -- closeable é a negação do valor padrão
             ent <- textCtrl r [font := fontFixed,bgcolor := colorSystem (ColorBackground) , textColor := black,clientSize:= sz 400 256]
 
 
