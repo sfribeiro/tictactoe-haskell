@@ -146,7 +146,7 @@ possibilidadeGanhar am (a:as) lista
 	|d /= 0 = d
 	|otherwise = possibilidadeGanhar am as lista
 	where 
-		l = filter (\x -> (x+a==15 && x <= 9  && (x /= 9 && a /= 6))) lista
+		l = filter (\x -> (x+a==15  && (x /= 9 && a /= 6))) lista
 		d = defesa (somatorio (posEstadoOposto am)) (posEstadoVazio am) 
 
 -- Calcula uma tupla com duas possiblidades de jogada
