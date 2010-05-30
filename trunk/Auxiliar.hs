@@ -4,8 +4,7 @@ module Auxiliar (
     fecharJogoP,
     mudaAviso,
 	mudaSom
-
-    ) where
+	) where
 	
 import Graphics.UI.WX
 import Graphics.UI.WXCore
@@ -15,6 +14,8 @@ import Mensagens
 import Time
 import Sounds
 import Aleatorio
+
+-- Funções para atualização do tabuleiro
 
 -- Atualiza a figura mostrada em uma posição do tabuleiro
 atualizaPosicao :: Ambiente -> Panel () -> Estado -> IO ()
@@ -170,8 +171,7 @@ aplicaSkin a s = do
     atualizaTitulo a
     atualizaVez a
 	
-
-
+-- Funções da jogada
 
 -- Realiza ou rejeita uma jogada feita
 jogar :: Ambiente -> (Int,Int) -> Estado -> [Int] -> Point -> IO()
@@ -341,9 +341,9 @@ mudaSom a m = do
 			set a [value := True]
 			set m [checked := True]
 			
-			
 juntaString :: String -> String -> String
 juntaString a b = a ++ b
+
 -- Funções do Tempo
 
 -- Pega a hora local			

@@ -7,6 +7,7 @@ import Tipos
 import Regras
 import Auxiliar
 import Resultados
+
 main :: IO()
 main = start gui
 
@@ -17,7 +18,6 @@ gui = do
 	f 			<- frameFixed [text := tituloJanela, picture := "tictactoe.ico",position:= pt 10 10]
 	
 	-- Cria os paineis da janela
-	
 	p3			<- panel f [clientSize := sz 384 38] -- painel do titulo
 	p1 			<- panel f [clientSize := sz 384 384]
 	p2			<- panel f [clientSize := sz 384 38] -- painel da vez do jogador
@@ -144,4 +144,3 @@ gui = do
 	
 	-- Aplica a skin Padrão
 	aplicaSkin amb "padrao"
-	

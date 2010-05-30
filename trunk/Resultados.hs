@@ -9,7 +9,6 @@ import System.IO.Unsafe
 import System.IO
 import System.Directory
 
-
 -- Função que muda a visibilidade de um widget
 mudarVisibilidade :: Ambiente -> IO()
 mudarVisibilidade amb 
@@ -17,11 +16,13 @@ mudarVisibilidade amb
     | otherwise = set frame [visible := True, enabled := True]
         where frame = ambFrm amb
 	
+-- Função que lê o arquivo
 relatorioJogos :: String
 relatorioJogos
 	| unsafePerformIO (doesFileExist arqRelatorio) == False = ""
 	| otherwise = unsafePerformIO (readFile arqRelatorio)	
 
+-- Função que cria a janela com a leitura do arquivo
 resultados :: Ambiente -> IO ()
 resultados a = do
 	rel <- get (ambRel a) value
@@ -33,7 +34,7 @@ resultados a = do
 
 guiResultado a titulo resultado = do
             mudarVisibilidade a;
-            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not,position := pt 10 10, minimizeable := False] -- closeable é a negação do valor padrão
+            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not,position := pt 10 10, minimizeable := False]
             ent <- textCtrl r [font := fontFixed, bgcolor := black , color := white, clientSize:= sz 400 256]
             clean <- button r [text := "Limpar",on command := do
                                                                 set ent [text:="\n\tNenhum hist\243rico de jogo\t"]
