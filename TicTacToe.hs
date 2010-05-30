@@ -14,7 +14,7 @@ gui :: IO()
 gui = do
 	
 	-- Cria a janela do jogo o parametro position equivale a posição na tela que ela aparecerá
-	f 			<- frameFixed [text := tituloJanela, picture := "tictactoe.ico",position:=point 10 10]
+	f 			<- frameFixed [text := tituloJanela, picture := "tictactoe.ico",position:= pt 10 10]
 	
 	-- Cria os paineis da janela
 	
