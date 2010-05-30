@@ -19,4 +19,6 @@ aleatorio a b = unsafePerformIO (aux1 a b)
 
 -- Gera a direção para segui na árvore aleatoriamente
 gerarDirecao :: [Int]
-gerarDirecao = [(aleatorio 1 2),(aleatorio 1 2),(aleatorio 1 2), (aleatorio 1 2)]
+gerarDirecao 
+	|aleatorio 1 2 == 1 = [(aleatorio 1 2),(aleatorio 1 2),(aleatorio 1 2), (aleatorio 1 2)]
+	|otherwise = [1,1,1,1]
