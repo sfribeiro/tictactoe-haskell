@@ -51,7 +51,7 @@ guiResultado a titulo resultado = do
             close <- button r [text := "Fechar",on command := do 
                                                                 close r
                                                                 mudarVisibilidade a;]
-            set ent [text:=resultado, color := white]
+            set ent [text:=resultado]
             set r [layout:= column 5 [hfill (widget ent),
                                       floatCenter $ row 1 [widget clean, widget close]],
                  clientSize:= sz 350 100]
