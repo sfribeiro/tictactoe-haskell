@@ -35,17 +35,26 @@ relatorioJogos
 
 guiResultado a titulo resultado = do
             mudarVisibilidade a;
-            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not, minimizeable := False] -- closeable é a negação do valor padrão
-            ent <- textCtrl r [font := fontFixed, clientSize:= sz 350 128]
 
-            clean <- button r [text := "Limpar"] 
+            r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not,position := point 180 180, minimizeable := False] -- closeable é a negação do valor padrão
+            ent <- textCtrl r [font := fontFixed,bgcolor := colorSystem (ColorBackground) , textColor := black,clientSize:= sz 400 256]
+
+
+            clean <- button r [text := "Limpar",on command := do
+                                                                set ent [text:="\n\tNenhum hist\243rico de jogo\t"]
+                                                                set (ambRel a) [value := ""]
+                                                                if (unsafePerformIO (doesFileExist arqRelatorio))
+                                                                        then do
+                                                                                removeFile arqRelatorio;
+                                                                        else do
+                                                                                return ()]
             close <- button r [text := "Fechar",on command := do 
                                                                 close r
                                                                 mudarVisibilidade a;]
-            set ent [text:=resultado, color := white, bgcolor := black]
+            set ent [text:=resultado, color := white]
             set r [layout:= column 5 [hfill (widget ent),
-                                      floatCenter $ row 5 [widget clean, widget close]],
-                  clientSize:= sz 350 128]
+                                      floatCenter $ row 1 [widget clean, widget close]],
+                 clientSize:= sz 350 100]
 
 
 resultados :: Ambiente -> IO ()
@@ -54,7 +63,7 @@ resultados a = do
 	if (rel == "")
 		then do
            
-			guiResultado a msgResultadoTitulo "\tNenhum hist\243rico de jogo"
+			guiResultado a msgResultadoTitulo "\n\tNenhum hist\243rico de jogo"
             
 		else do
 			guiResultado a msgResultadoTitulo ("  Data      -    Hora     -     Vencedor\n\n" ++ (rel))

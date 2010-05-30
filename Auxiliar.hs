@@ -202,7 +202,7 @@ jogar a (x,y) est direcao _ = do
 					case ganhador of
 						X -> do
 							somVitoria (ambSom a)
-							appendFile arqRelatorio (strTime ++ " - Jogador X venceu.\n")
+							appendFile arqRelatorio (strTime ++ " - Jogador X.\n")
 							r <- get (ambRel a) value
 							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador X .\n"))]
 							r <- get (ambRel a) value
@@ -210,7 +210,7 @@ jogar a (x,y) est direcao _ = do
 							infoDialog (ambFrm a) dlgConcluidoT dlgVX
 						O -> do
 							somVitoria (ambSom a)
-							appendFile arqRelatorio (strTime ++ " - Jogador O venceu\n")
+							appendFile arqRelatorio (strTime ++ " - Jogador O\n")
 							r <- get (ambRel a) value
 							set (ambRel a) [value := (juntaString r (strTime ++ " - Jogador O\n"))]
 							r <- get (ambRel a) value
