@@ -64,7 +64,7 @@ resultados a = do
 guiResultado a titulo resultado = do
             mudarVisibilidade a;
             r <- frameFixed [text:=titulo, picture := "tictactoe.ico",closeable :~ not,position := pt 10 10, minimizeable := False]
-            ent <- textCtrl r [font := fontFixed, bgcolor := black , color := white, clientSize:= sz 400 256]
+            ent <- textCtrl r [font := fontFixed, bgcolor := black , color := white, clientSize:= sz 100 100]
             clean <- button r [text := "Limpar",on command := do
                                                                 set ent [text:="\n\tNenhum hist\243rico de jogo\t"]
                                                                 set (ambRel a) [value := ""]
