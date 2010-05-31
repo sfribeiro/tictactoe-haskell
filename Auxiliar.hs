@@ -17,7 +17,7 @@
 --                                                                                            --
 --  Descrição do Projeto:                                                                     --
 --      Este projeto é a implementação em Haskell do Jogo da Velha, com interface gráfica     --
---      baseada na biblioteca hxHaskell. Pode-se jogar com dois jogadores humanos ou contra a --
+--      baseada na biblioteca wxHaskell. Pode-se jogar com dois jogadores humanos ou contra a --
 --      CPU. Foram utilizados recursos avançados do wxHaskell, visando um visual agradável,   --
 --      inclusive com a possibilidade de troca de "skins" e reprodução de áudios.             --
 ------------------------------------------------------------------------------------------------
